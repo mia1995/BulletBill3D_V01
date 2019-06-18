@@ -26,7 +26,7 @@ public class Main extends Application {
         friction.normalize();
         friction.mult(c);
 
-        primaryStage.setTitle("Hello World");
+        primaryStage.setTitle("BulletBill");
         primaryStage.setScene(scene);
         primaryStage.show();
 

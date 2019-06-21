@@ -8,11 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
-import javafx.scene.shape.Circle;
-import javafx.scene.shape.DrawMode;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Sphere;
-import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
 
 public class Mover {
@@ -35,16 +31,23 @@ public class Mover {
     double radius = 16;
     double mass;
 
-    double width = freierFall.getMaxX();
-    double height = freierFall.getMaxY();
-    double depth = freierFall.getMaxZ();
+    double maxWidth = freierFall.getMaxX();
+    double maxHeight = freierFall.getMaxY();
+    double maxDepth = freierFall.getMaxZ();
+    double minWidth = freierFall.getMinX();
+    double minHeight = freierFall.getMinY();
+    double minDepth = freierFall.getMinZ();
+
     Bahn currentElement;
 
     public void setBorder(){
-        width = currentElement.getMaxX();
-        height = currentElement.getMaxY();
-        depth = currentElement.getMaxZ();
-        System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")");
+        maxWidth = currentElement.getMaxX();
+        maxHeight = currentElement.getMaxY();
+        maxDepth = currentElement.getMaxZ();
+        minWidth = currentElement.getMinX();
+        minHeight = currentElement.getMinY();
+        minDepth = currentElement.getMinZ();
+        System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
         System.out.println("Index: " + i);
     }
 
@@ -68,7 +71,7 @@ public class Mover {
     }
 
     public Mover(){
-        location = new PVector(width - radius,height/2 , depth );
+        location = new PVector(maxWidth - radius, maxHeight /2 , maxDepth);
         velocity = new PVector(0,0, 0);
         acceleration = new PVector(-0.001,0.01, 0);
         mass = 10.0;
@@ -119,29 +122,29 @@ public class Mover {
 
     public void checkEdges(){
 
-        if(location.x > (width - radius)){
+        if(location.x > (maxWidth - radius)){
             velocity.x *= -1;
-            location.x = width;
+            location.x = maxWidth;
 
         } else if(location.x < radius){
             velocity.x *= -1;
             location.x = radius;
         }
 
-        if(location.y > height ) {
+        if(location.y > maxHeight) {
             setBorder();
             //location.y = freierFall[i].getMinY();
             if (i < curveLefts.length -1) {
                 i++;
             } else {
                 velocity.y *= -1;
-                location.y = height - radius;
+                location.y = maxHeight - radius;
             }
         }
 
-        if(location.z > (depth - radius)){
+        if(location.z > (maxDepth - radius)){
             velocity.z *= -1;
-            location.z = depth;
+            location.z = maxDepth;
         } else if (location.z < radius){
             velocity.z *= -1;
             location.z = radius;

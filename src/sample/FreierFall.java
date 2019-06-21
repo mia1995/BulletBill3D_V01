@@ -7,7 +7,7 @@ public class FreierFall extends Bahn {
     }
 
     public static FreierFall createElement(){
-        FreierFall freierFall = new FreierFall(760,800,100,200,0,0, false, false, true, true, false, false);
+        FreierFall freierFall = new FreierFall(760,800,100,200,0,0, false, false, true,true,false,false);
         return freierFall;
     }
 }

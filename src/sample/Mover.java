@@ -20,26 +20,41 @@ public class Mover {
     PVector velocity;
     PVector acceleration;
 
-    Bahn element1 = new Bahn(0,800,0,800,0,0);
+    int i = 0 ;
+
+    FreierFall[] freierFall = FreierFall.createElement();
+
+
+    //Bahn[] freierFall  = Bahn.createElement();
+    //Bahn[] freierFall = bahn.getFreierFall();
+    Bahn element1 = new Bahn(freierFall[i].getMinX(), freierFall[i].getMaxX(), freierFall[i].getMinY(), freierFall[i].getMaxY(), freierFall[i].getMinZ(), freierFall[i].getMaxZ());
 
     public static Pane container = new Pane();
-
     public static Scene scene = new Scene(container, 1000,800);
-
     Sphere ball;
 
     double radius = 16;
     double mass;
 
-    double width = element1.getMaxX();
-    double height = element1.getMaxY();
-    double depth = element1.getMaxZ();
+    double width; // = freierFall[i].getMaxX();
+    double height; // = freierFall[i].getMaxY();
+    double depth; // = freierFall[i].getMaxZ();
+
+
+    public void setBorder(){
+        width = freierFall[i].getMaxX();
+        height = freierFall[i].getMaxY();
+        depth = freierFall[i].getMaxZ();
+        System.out.println(freierFall[0].getMaxX() + "; " + freierFall[0].getMaxY() + "; "  + freierFall[0].getMaxZ());
+        System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")");
+        System.out.println("Index: " + i);
+    }
 
     public Mover(){
         location = new PVector(width - radius,height/2 , depth );
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.01, 0);
-        mass = 20;
+        acceleration = new PVector(0.001,0.01, 0);
+        mass = 10.0;
     }
 
     public void applyForce(PVector force){
@@ -49,7 +64,6 @@ public class Mover {
     }
 
     public void draw(){
-
         ball = new Sphere(radius);
         ball.relocate(location.x, location.y);
         PhongMaterial material = new PhongMaterial();
@@ -72,9 +86,11 @@ public class Mover {
                 System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
                 System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");
-                System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")");
+               // System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")");
+                //System.out.println("Index: " + i);
 
                 checkEdges();
+
             }
         }));
         timeline.play();
@@ -84,20 +100,26 @@ public class Mover {
     }
 
     public void checkEdges(){
+
         if(location.x > (width - radius)){
             velocity.x *= -1;
             location.x = width;
+
         } else if(location.x < radius){
             velocity.x *= -1;
             location.x = radius;
         }
 
-        if(location.y > (height - radius)){
-            velocity.y *= -0.5;
-            location.y = height - radius;
-        } else if (location.y < radius) {
-            velocity.y *= -1;
-            location.y = radius;
+        if(location.y > height ) {
+            setBorder();
+            //location.y = freierFall[i].getMinY();
+            if (i < freierFall.length -1) {
+                i++;
+            } else {
+                velocity.y *= -1;
+                location.y = height - radius;
+            }
+
         }
 
         if(location.z > (depth - radius)){
@@ -108,4 +130,6 @@ public class Mover {
             location.z = radius;
         }
     }
+
+
 }

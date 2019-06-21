@@ -7,7 +7,7 @@ public class PVector {
     double y;
     double z;
 
-    PVector(double x_, double y_, double z_){
+    public PVector(double x_, double y_, double z_){
         x = x_;
         y = y_;
         z = z_;

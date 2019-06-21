@@ -20,7 +20,7 @@ public class Main extends Application {
         //Reibungskoeffizient
         double c = 0.01;
 
-        PVector gravity = new PVector(0,0.981*mover.mass,0);
+        PVector gravity = new PVector(0,0.00981*mover.mass,0);
         PVector friction = mover.velocity;
         friction.mult(-1);
         friction.normalize();

@@ -2,7 +2,10 @@ package sample;
 
 import javafx.scene.layout.Pane;
 
+
+
 public class Bahn extends Pane {
+
     private static double minX;
     private static double maxX;
     private static double minY;
@@ -10,7 +13,9 @@ public class Bahn extends Pane {
     private static double minZ;
     private static double maxZ;
 
-    public Bahn(double minX_, double maxX_, double minY_, double maxY_, double minZ_, double maxZ_){
+    //private Bahn[] freierFall;
+
+    public Bahn (double minX_, double maxX_, double minY_, double maxY_, double minZ_, double maxZ_){
         this.minX = minX_;
         this.maxX = maxX_;
         this.minY = minY_;
@@ -19,51 +24,51 @@ public class Bahn extends Pane {
         this.maxZ = maxZ_;
     }
 
-    public static double getMinX() {
+    public double getMinX() {
         return minX;
     }
 
-    public static void setMinX(double minX) {
+    public void setMinX(double minX) {
         Bahn.minX = minX;
     }
 
-    public static double getMaxX() {
+    public double getMaxX() {
         return maxX;
     }
 
-    public static void setMaxX(double maxX) {
+    public void setMaxX(double maxX) {
         Bahn.maxX = maxX;
     }
 
-    public static double getMinY() {
+    public double getMinY() {
         return minY;
     }
 
-    public static void setMinY(double minY) {
+    public void setMinY(double minY) {
         Bahn.minY = minY;
     }
 
-    public static double getMaxY() {
+    public double getMaxY() {
         return maxY;
     }
 
-    public static void setMaxY(double maxY) {
+    public void setMaxY(double maxY) {
         Bahn.maxY = maxY;
     }
 
-    public static double getMinZ() {
+    public double getMinZ() {
         return minZ;
     }
 
-    public static void setMinZ(double minZ) {
+    public void setMinZ(double minZ) {
         Bahn.minZ = minZ;
     }
 
-    public static double getMaxZ() {
+    public double getMaxZ() {
         return maxZ;
     }
 
-    public static void setMaxZ(double maxZ) {
+    public void setMaxZ(double maxZ) {
         Bahn.maxZ = maxZ;
     }
 }

@@ -117,12 +117,12 @@ public class Mover {
 
         //freierFall.getChildren().add(ball);
         //element1.getChildren().add(freierFall);
-        container.getChildren().addAll(freierFall, ball);
+        container.getChildren().addAll(freierFall, currentElement, ball);
     }
 
     public void checkEdges(){
 
-        if(location.x > (maxWidth - radius)){
+        /*if(location.x > (maxWidth - radius)){
             velocity.x *= -1;
             location.x = maxWidth;
 
@@ -148,7 +148,83 @@ public class Mover {
         } else if (location.z < minHeight + radius){
             velocity.z *= -1;
             location.z = radius;
+        }*/
+
+        boolean xNeg = currentElement.getXNeg();
+        boolean xPos = currentElement.getXPos();
+        boolean yNeg = currentElement.getYNeg();
+        boolean yPos = currentElement.getYPos();
+        boolean zNeg = currentElement.getZNeg();
+        boolean zPos = currentElement.getZPos();
+
+        if(location.x > (maxWidth - radius)){
+
+            if(xPos == true){
+                setBorder();
+                i ++;
+            }else{
+                velocity.x *= -1;
+                location.x = maxWidth;
+            }
+
+        } else if(location.x < minWidth + radius){
+
+            if(xNeg == true){
+                setBorder();
+                i ++;
+            }else{
+                velocity.x *= -1;
+                location.x = radius;
+            }
+
         }
+
+
+        if(location.y > (maxHeight - radius)){
+
+            if(yPos == true){
+                setBorder();
+                i ++;
+            }else{
+                velocity.y *= -1;
+                location.y = maxHeight;
+            }
+
+        } else if(location.y < minHeight + radius){
+
+            if(yNeg == true){
+                setBorder();
+                i ++;
+            }else{
+                velocity.y *= -1;
+                location.y = maxHeight - radius;
+            }
+
+        }
+
+
+        if(location.z > (maxDepth - radius)){
+
+            if(zPos == true){
+                setBorder();
+                i ++;
+            }else{
+                velocity.z *= -1;
+                location.z = maxDepth;
+            }
+
+        } else if(location.z < minDepth + radius){
+
+            if(zNeg == true){
+                setBorder();
+                i ++;
+            }else{
+                velocity.z *= -1;
+                location.z = maxDepth - radius;
+            }
+
+        }
+
     }
 
 

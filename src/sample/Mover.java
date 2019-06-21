@@ -126,7 +126,7 @@ public class Mover {
             velocity.x *= -1;
             location.x = maxWidth;
 
-        } else if(location.x < radius){
+        } else if(location.x < minWidth + radius){
             velocity.x *= -1;
             location.x = radius;
         }
@@ -145,7 +145,7 @@ public class Mover {
         if(location.z > (maxDepth - radius)){
             velocity.z *= -1;
             location.z = maxDepth;
-        } else if (location.z < radius){
+        } else if (location.z < minHeight + radius){
             velocity.z *= -1;
             location.z = radius;
         }

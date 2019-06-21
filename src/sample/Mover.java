@@ -20,13 +20,13 @@ public class Mover {
     PVector velocity;
     PVector acceleration;
 
+   Object[] ablauf;
+
     int i = 0 ;
+    int j = 0;
 
     FreierFall freierFall = FreierFall.createElement();
-
     CurveLeft[] curveLefts = CurveLeft.createElement();
-
-    Bahn element1 = new Bahn(curveLefts[i].getMinX(), curveLefts[i].getMaxX(), curveLefts[i].getMinY(), curveLefts[i].getMaxY(), curveLefts[i].getMinZ(), curveLefts[i].getMaxZ());
 
     public static Pane container = new Pane();
     public static Scene scene = new Scene(container, 1000,800);
@@ -35,23 +35,36 @@ public class Mover {
     double radius = 16;
     double mass;
 
-    double width;
-    double height;
-    double depth;
+    double width = freierFall.getMaxX();
+    double height = freierFall.getMaxY();
+    double depth = freierFall.getMaxZ();
+    Bahn[] currentElement;
 
     public void setBorder(){
-        width = curveLefts[i].getMaxX();
-        height = curveLefts[i].getMaxY();
-        depth = curveLefts[i].getMaxZ();
-        System.out.println(curveLefts[0].getMaxX() + "; " + curveLefts[0].getMaxY() + "; "  + curveLefts[0].getMaxZ());
+        width = currentElement[i].getMaxX();
+        height = currentElement[i].getMaxY();
+        depth = currentElement[i].getMaxZ();
         System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")");
         System.out.println("Index: " + i);
+    }
+
+    public Object[] createAblauf(){
+        ablauf = new Bahn[7];
+        ablauf[0] = freierFall;
+        ablauf[1] = curveLefts;
+        return ablauf;
+    }
+
+    public void changeElement(){
+        createAblauf();
+        currentElement = ablauf[j];
+        j++;
     }
 
     public Mover(){
         location = new PVector(width - radius,height/2 , depth );
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(0.001,0.01, 0);
+        acceleration = new PVector(-0.001,0.01, 0);
         mass = 10.0;
     }
 
@@ -86,14 +99,13 @@ public class Mover {
                 System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");
 
                 checkEdges();
-
             }
         }));
         timeline.play();
 
-        freierFall.getChildren().add(ball);
-        element1.getChildren().add(freierFall);
-        container.getChildren().addAll(element1);
+        //freierFall.getChildren().add(ball);
+        //element1.getChildren().add(freierFall);
+        container.getChildren().addAll(freierFall, ball);
     }
 
     public void checkEdges(){

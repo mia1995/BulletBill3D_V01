@@ -22,12 +22,11 @@ public class Mover {
 
     int i = 0 ;
 
-    FreierFall[] freierFall = FreierFall.createElement();
+    FreierFall freierFall = FreierFall.createElement();
 
+    CurveLeft[] curveLefts = CurveLeft.createElement();
 
-    //Bahn[] freierFall  = Bahn.createElement();
-    //Bahn[] freierFall = bahn.getFreierFall();
-    Bahn element1 = new Bahn(freierFall[i].getMinX(), freierFall[i].getMaxX(), freierFall[i].getMinY(), freierFall[i].getMaxY(), freierFall[i].getMinZ(), freierFall[i].getMaxZ());
+    Bahn element1 = new Bahn(curveLefts[i].getMinX(), curveLefts[i].getMaxX(), curveLefts[i].getMinY(), curveLefts[i].getMaxY(), curveLefts[i].getMinZ(), curveLefts[i].getMaxZ());
 
     public static Pane container = new Pane();
     public static Scene scene = new Scene(container, 1000,800);
@@ -36,16 +35,15 @@ public class Mover {
     double radius = 16;
     double mass;
 
-    double width; // = freierFall[i].getMaxX();
-    double height; // = freierFall[i].getMaxY();
-    double depth; // = freierFall[i].getMaxZ();
-
+    double width;
+    double height;
+    double depth;
 
     public void setBorder(){
-        width = freierFall[i].getMaxX();
-        height = freierFall[i].getMaxY();
-        depth = freierFall[i].getMaxZ();
-        System.out.println(freierFall[0].getMaxX() + "; " + freierFall[0].getMaxY() + "; "  + freierFall[0].getMaxZ());
+        width = curveLefts[i].getMaxX();
+        height = curveLefts[i].getMaxY();
+        depth = curveLefts[i].getMaxZ();
+        System.out.println(curveLefts[0].getMaxX() + "; " + curveLefts[0].getMaxY() + "; "  + curveLefts[0].getMaxZ());
         System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")");
         System.out.println("Index: " + i);
     }
@@ -86,8 +84,6 @@ public class Mover {
                 System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
                 System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");
-                // System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")")
-                // System.out.println("Index: " + i);
 
                 checkEdges();
 
@@ -95,7 +91,8 @@ public class Mover {
         }));
         timeline.play();
 
-        element1.getChildren().add(ball);
+        freierFall.getChildren().add(ball);
+        element1.getChildren().add(freierFall);
         container.getChildren().addAll(element1);
     }
 
@@ -113,7 +110,7 @@ public class Mover {
         if(location.y > height ) {
             setBorder();
             //location.y = freierFall[i].getMinY();
-            if (i < freierFall.length -1) {
+            if (i < curveLefts.length -1) {
                 i++;
             } else {
                 velocity.y *= -1;

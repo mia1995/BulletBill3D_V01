@@ -86,8 +86,8 @@ public class Mover {
                 System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
                 System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");
-               // System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")");
-                //System.out.println("Index: " + i);
+                // System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")")
+                // System.out.println("Index: " + i);
 
                 checkEdges();
 
@@ -119,7 +119,6 @@ public class Mover {
                 velocity.y *= -1;
                 location.y = height - radius;
             }
-
         }
 
         if(location.z > (depth - radius)){

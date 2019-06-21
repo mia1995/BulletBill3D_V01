@@ -6,12 +6,12 @@ import javafx.scene.layout.Pane;
 
 public class Bahn extends Pane {
 
-    private static double minX;
-    private static double maxX;
-    private static double minY;
-    private static double maxY;
-    private static double minZ;
-    private static double maxZ;
+    private double minX;
+    private double maxX;
+    private double minY;
+    private double maxY;
+    private double minZ;
+    private double maxZ;
 
     //private Bahn[] freierFall;
 
@@ -27,48 +27,49 @@ public class Bahn extends Pane {
     public double getMinX() {
         return minX;
     }
-
+    /**
     public void setMinX(double minX) {
         Bahn.minX = minX;
     }
-
+**/
     public double getMaxX() {
         return maxX;
     }
-
+/**
     public void setMaxX(double maxX) {
         Bahn.maxX = maxX;
     }
-
+**/
     public double getMinY() {
         return minY;
     }
-
+/**
     public void setMinY(double minY) {
         Bahn.minY = minY;
     }
-
+**/
     public double getMaxY() {
         return maxY;
     }
-
+/**
     public void setMaxY(double maxY) {
         Bahn.maxY = maxY;
     }
-
+**/
     public double getMinZ() {
         return minZ;
     }
-
+/**
     public void setMinZ(double minZ) {
         Bahn.minZ = minZ;
     }
-
+**/
     public double getMaxZ() {
         return maxZ;
     }
-
+/**
     public void setMaxZ(double maxZ) {
         Bahn.maxZ = maxZ;
     }
+ **/
 }

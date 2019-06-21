@@ -38,26 +38,32 @@ public class Mover {
     double width = freierFall.getMaxX();
     double height = freierFall.getMaxY();
     double depth = freierFall.getMaxZ();
-    Bahn[] currentElement;
+    Bahn currentElement;
 
     public void setBorder(){
-        width = currentElement[i].getMaxX();
-        height = currentElement[i].getMaxY();
-        depth = currentElement[i].getMaxZ();
+        width = currentElement.getMaxX();
+        height = currentElement.getMaxY();
+        depth = currentElement.getMaxZ();
         System.out.println("Bounds: Bahn = (" + width + "; " + height + "; " + depth + ")");
         System.out.println("Index: " + i);
     }
 
     public Object[] createAblauf(){
-        ablauf = new Bahn[7];
+        ablauf = new Object[2];
         ablauf[0] = freierFall;
         ablauf[1] = curveLefts;
         return ablauf;
     }
 
-    public void changeElement(){
+    public void startwithElement(){
         createAblauf();
-        currentElement = ablauf[j];
+        currentElement = (Bahn) ablauf[0];
+        j++;
+    }
+
+    public void changeElement(){
+        //createAblauf();
+        currentElement = (Bahn) ablauf[j];
         j++;
     }
 
@@ -75,6 +81,9 @@ public class Mover {
     }
 
     public void draw(){
+
+        startwithElement();
+
         ball = new Sphere(radius);
         ball.relocate(location.x, location.y);
         PhongMaterial material = new PhongMaterial();

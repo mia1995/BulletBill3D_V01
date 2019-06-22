@@ -2,9 +2,7 @@ package sample;
 
 import javafx.scene.layout.Pane;
 
-
-
-public class Bahn extends Pane {
+abstract class Bahn extends Pane {
 
     private double minX;
     private double maxX;
@@ -19,9 +17,6 @@ public class Bahn extends Pane {
     private boolean yPos;
     private boolean zNeg;
     private boolean zPos;
-
-
-    //private Bahn[] freierFall;
 
     public Bahn (double minX_, double maxX_, double minY_, double maxY_, double minZ_, double maxZ_, boolean xNeg_, boolean xPos_, boolean yNeg_, boolean yPos_, boolean zNeg_, boolean zPos_){
         this.minX = minX_;
@@ -62,7 +57,6 @@ public class Bahn extends Pane {
     public double getMaxZ() {
         return maxZ;
     }
-
 
     public boolean getXNeg(){return xNeg; }
 

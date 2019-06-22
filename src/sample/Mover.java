@@ -89,7 +89,7 @@ public class Mover {
 
     public Mover(){
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
-        location = new PVector(maxWidth - radius, maxHeight, maxDepth);
+        location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
         acceleration = new PVector(-0.001,0.01, 0);
         mass = 10.0;
@@ -192,11 +192,9 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.x *= -1;
-                location.x = radius;
+                location.x = minWidth + radius;
             }
-
         }
-
 
         if(location.y > (maxHeight - radius)){
 
@@ -205,7 +203,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.y *= -1;
-                location.y = maxHeight;
+                //location.y = maxHeight - radius;
             }
 
         } else if(location.y < minHeight + radius){
@@ -215,9 +213,8 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.y *= -1;
-                location.y = maxHeight - radius;
+                //location.y = minHeight + radius;
             }
-
         }
 
 
@@ -228,7 +225,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.z *= -1;
-                location.z = maxDepth;
+                location.z = maxDepth - radius;
             }
 
         } else if(location.z < minDepth + radius){
@@ -238,7 +235,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.z *= -1;
-                location.z = maxDepth - radius;
+                location.z = minDepth + radius;
             }
 
         }

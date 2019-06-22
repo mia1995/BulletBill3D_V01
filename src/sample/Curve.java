@@ -7,10 +7,10 @@ public class Curve extends Bahn {
 
     public static Curve[] createElement(){
         Curve[] curves = new Curve[4];
-        curves[0] = new Curve(750, 800, 100, 110, 0, 0, false,false,true,true,false,false);
-        curves[1] = new Curve(755, 800, 110, 140, 0, 0, false,false,true,true,false,false);
-        curves[2] = new Curve(720, 800, 140, 160, 0, 0, false,false,true,false,false,false);
-        curves[3] = new Curve(700, 720, 160, 180, 0, 0, false,true,false,false,false,false);
+        curves[0] = new Curve(730, 770, 100, 110, 0, 0, false,false,true,true,false,false);
+        curves[1] = new Curve(715, 770, 110, 130, 0, 0, false,false,true,true,false,false);
+        curves[2] = new Curve(710, 770, 130, 170, 0, 0, true,false,false,true,false,false);
+        curves[3] = new Curve(700, 710, 130, 170, 0, 0, true,false,false,false,false,false);
         return curves;
     }
 }

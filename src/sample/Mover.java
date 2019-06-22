@@ -25,12 +25,13 @@ public class Mover {
 
     FreierFall[] freierFall = FreierFall.createElement();
     Curve[] curves = Curve.createElement();
+    Gerade[] gerade = Gerade.createElement();
 
     public static Pane container = new Pane();
     public static Scene scene = new Scene(container, 1000,800);
     Sphere ball;
 
-    double radius = 20;
+    double radius = 15;
     double mass;
 
     double maxWidth = freierFall[0].getMaxX();
@@ -41,6 +42,7 @@ public class Mover {
     double minDepth = freierFall[0].getMinZ();
 
     Bahn currentElement;
+    Bahn elementToDraw;
 
     public void setBorder(){
         maxWidth = currentElement.getMaxX();
@@ -59,11 +61,11 @@ public class Mover {
     }
 
     public void drawBahnElements(){
-        for (int i = 0; i<ablauf.length - 1; i++){
-            for (int j = 0; j < ablauf[i].length; j++){
-                currentElement = (Bahn) ablauf[0][0];
+        for (int ii = 0; ii<ablauf.length - 1; ii++){
+            for (int jj = 0; jj < ablauf[ii].length; jj++){
+                elementToDraw = (Bahn) ablauf[ii][jj];
 
-                Rectangle rect = new Rectangle(minWidth, minHeight, maxWidth - minWidth, maxHeight - minHeight);
+                Rectangle rect = new Rectangle(elementToDraw.getMinX(), elementToDraw.getMinY(), elementToDraw.getMaxX() - elementToDraw.getMinX(), elementToDraw.getMaxY() - elementToDraw.getMinY());
                 rect.setFill(Color.TRANSPARENT);
                 rect.setStroke(Color.BLACK);
                 container.getChildren().add(rect);
@@ -73,38 +75,75 @@ public class Mover {
 
     public Object[] createAblauf(){
 
-        ablauf = new Object[2][];
+        ablauf = new Object[3][];
         ablauf[0] = freierFall;
         ablauf[1] = curves;
+        ablauf[2] = gerade;
         return ablauf;
     }
 
     public void startwithElement(){
 
         createAblauf();
-        drawBahnElements();
+        //drawBahnElements();
         //System.out.println(ablauf[0][0]);
         currentElement = (Bahn) ablauf[0][0];
+
+        Rectangle rect = new Rectangle(currentElement.getMinX(), currentElement.getMinY(), currentElement.getMaxX() - currentElement.getMinX(), currentElement.getMaxY() - currentElement.getMinY());
+        rect.setFill(Color.TRANSPARENT);
+        rect.setStroke(Color.BLACK);
+        container.getChildren().add(rect);
+
+        System.out.println("IndexJ: " + j);
+
         i++;
     }
 
     public void changeElement(){
         //createAblauf();
 
-        if(i == ablauf.length -1 ) {
+        /*if(i == ablauf.length -1) {
 
             currentElement = (Bahn) ablauf[i][j];
-            System.out.println("Index: " + j);
             j++;
+            //-1
 
-            if (j == ablauf[i].length - 1) {
+            if (j == ablauf[i].length) {
                 i++;
                 j = 0;
+
+                System.out.println("test");
             }
 
-        } else{
-            System.out.println("Bahn wurde durchlaufen");
+        }*/
+
+        /*if (j == ablauf[i].length -1) {
+
+            i++;
+            j = 0;
+            currentElement = (Bahn) ablauf[i][j];
+
+        }else {
+
+            j++;
+            currentElement = (Bahn) ablauf[i][j];
+
+        }*/
+
+        if (j == ablauf[i].length - 1) {
+
+            currentElement = (Bahn) ablauf[i][j];
+            i++;
+            j = 0;
+
+        } else {
+
+            currentElement = (Bahn) ablauf[i][j];
+            j++;
+
         }
+
+        System.out.println("IndexJ: " + j);
 
     }
 
@@ -112,7 +151,7 @@ public class Mover {
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.001, 0);
+        acceleration = new PVector(-0.09,0.001, 0);
         mass = 80.0;
     }
 
@@ -145,9 +184,9 @@ public class Mover {
                 ball.setLayoutX(location.x);
                 ball.setLayoutY(location.y);
 
-                System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
+                /*System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
-                System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");
+                System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");*/
 
                 checkEdges();
             }

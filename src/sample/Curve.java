@@ -5,12 +5,19 @@ public class Curve extends Bahn {
         super(minX_, maxX_, minY_, maxY_, minZ_, maxZ_, xNeg_, xPos_, yNeg_, yPos_, zNeg_, zPos_);
     }
 
-    public static Curve[] createElement(){
+    public static Curve[] createElement1(){
         Curve[] curves = new Curve[4];
-        curves[0] = new Curve(730, 770, 100, 110, 0, 0, false,false,true,true,false,false);
-        curves[1] = new Curve(715, 770, 110, 130, 0, 0, false,false,true,true,false,false);
-        curves[2] = new Curve(710, 770, 130, 170, 0, 0, true,false,false,true,false,false);
-        curves[3] = new Curve(700, 710, 130, 170, 0, 0, true,false,false,false,false,false);
+        curves[0] = new Curve(730, 770, 100, 115 ,130, 170 ,false,false,true,true,false,false);
+        curves[1] = new Curve(730 ,770, 115, 120, 125, 170, false,false,true,true,false,false);
+        curves[2] = new Curve(730, 770, 120, 165, 115, 170, false,false,true,false,true,false);
+        curves[3] = new Curve(730, 770, 120, 165, 100, 115, false,false,false,false,false,true);
         return curves;
+    }
+
+    public static Curve[] createElement2(){
+        Curve[] curveKomplex = new Curve[2];
+        curveKomplex[0] = new Curve(730,770,120,165,85,100,false,false,false,false, true,true);
+        curveKomplex[1] = new Curve(714,770,120,164,30,85, false, false,false,false,false,false);
+        return curveKomplex;
     }
 }

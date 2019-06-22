@@ -6,9 +6,10 @@ public class Gerade extends Bahn {
         super(minX_, maxX_, minY_, maxY_, minZ_, maxZ_, xNeg_, xPos_, yNeg_, yPos_, zNeg_, zPos_);
     }
 
-    public static Gerade[] createElement(){
-        Gerade[] gerade = new Gerade[1];
-        gerade[0] = new Gerade(500,700,100,220,0,0,true,false,false,false,false,false);
+    public static Gerade[] createElement1(){
+        Gerade[] gerade = new Gerade[2];
+        gerade[0] = new Gerade(500,700,100,220,30,70,true,true,false,false,false,false);
+        gerade[1] = new Gerade(300,500,200,320,30,70,true,true,false,false,false,false);
         return gerade;
     }
 

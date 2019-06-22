@@ -11,4 +11,6 @@ public class FreierFall extends Bahn {
         freierFall[0] = new FreierFall (770,800,100,200,0,0, false, false, true,true,false,false);
         return freierFall;
     }
+
+    //createElement1(){} für FreierFall an anderer Stelle
 }

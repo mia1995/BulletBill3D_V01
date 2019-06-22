@@ -16,9 +16,10 @@ public class Mover {
     PVector velocity;
     PVector acceleration;
 
-   Object[] ablauf;
+   //Object[] ablauf;
+    Object[][] ablauf;
 
-    int i = 0 ;
+    int i = 0;
     int j = 0;
 
     FreierFall[] freierFall = FreierFall.createElement();
@@ -48,26 +49,36 @@ public class Mover {
         minHeight = currentElement.getMinY();
         minDepth = currentElement.getMinZ();
         System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
-        System.out.println("Index: " + i);
     }
 
     public Object[] createAblauf(){
-        ablauf = new Object[2];
+
+        ablauf = new Object[2][];
         ablauf[0] = freierFall;
         ablauf[1] = curveLefts;
         return ablauf;
     }
 
     public void startwithElement(){
+
         createAblauf();
-        currentElement = (Bahn) ablauf[0];
-        j++;
+        //System.out.println(ablauf[0][0]);
+        currentElement = (Bahn) ablauf[0][0];
+        i++;
     }
 
     public void changeElement(){
         //createAblauf();
-        currentElement = (Bahn) ablauf[j];
+
+        currentElement = (Bahn) ablauf[i][j];
         j++;
+        System.out.println("Index: " + j);
+
+        if(j == ablauf[i].length - 1){
+            i ++;
+            j = 0;
+        }
+
     }
 
     public Mover(){
@@ -162,7 +173,6 @@ public class Mover {
             if(xPos == true){
                 changeElement();
                 setBorder();
-                i ++;
             }else{
                 velocity.x *= -1;
                 location.x = maxWidth;
@@ -173,7 +183,6 @@ public class Mover {
             if(xNeg == true){
                 changeElement();
                 setBorder();
-                i ++;
             }else{
                 velocity.x *= -1;
                 location.x = radius;
@@ -187,7 +196,6 @@ public class Mover {
             if(yPos == true){
                 changeElement();
                 setBorder();
-                i ++;
             }else{
                 velocity.y *= -1;
                 location.y = maxHeight;
@@ -198,7 +206,6 @@ public class Mover {
             if(yNeg == true){
                 changeElement();
                 setBorder();
-                i ++;
             }else{
                 velocity.y *= -1;
                 location.y = maxHeight - radius;
@@ -212,7 +219,6 @@ public class Mover {
             if(zPos == true){
                 changeElement();
                 setBorder();
-                i ++;
             }else{
                 velocity.z *= -1;
                 location.z = maxDepth;
@@ -223,7 +229,6 @@ public class Mover {
             if(zNeg == true){
                 changeElement();
                 setBorder();
-                i ++;
             }else{
                 velocity.z *= -1;
                 location.z = maxDepth - radius;

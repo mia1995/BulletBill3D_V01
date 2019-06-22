@@ -21,22 +21,22 @@ public class Mover {
     int i = 0 ;
     int j = 0;
 
-    FreierFall freierFall = FreierFall.createElement();
+    FreierFall[] freierFall = FreierFall.createElement();
     CurveLeft[] curveLefts = CurveLeft.createElement();
 
     public static Pane container = new Pane();
     public static Scene scene = new Scene(container, 1000,800);
     Sphere ball;
 
-    double radius = 16;
+    double radius = 20;
     double mass;
 
-    double maxWidth = freierFall.getMaxX();
-    double maxHeight = freierFall.getMaxY();
-    double maxDepth = freierFall.getMaxZ();
-    double minWidth = freierFall.getMinX();
-    double minHeight = freierFall.getMinY();
-    double minDepth = freierFall.getMinZ();
+    double maxWidth = freierFall[0].getMaxX();
+    double maxHeight = freierFall[0].getMaxY();
+    double maxDepth = freierFall[0].getMaxZ();
+    double minWidth = freierFall[0].getMinX();
+    double minHeight = freierFall[0].getMinY();
+    double minDepth = freierFall[0].getMinZ();
 
     Bahn currentElement;
 
@@ -71,7 +71,7 @@ public class Mover {
     }
 
     public Mover(){
-        location = new PVector(maxWidth - radius, maxHeight /2 , maxDepth);
+        location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         velocity = new PVector(0,0, 0);
         acceleration = new PVector(-0.001,0.01, 0);
         mass = 10.0;
@@ -117,7 +117,7 @@ public class Mover {
 
         //freierFall.getChildren().add(ball);
         //element1.getChildren().add(freierFall);
-        container.getChildren().addAll(freierFall, currentElement, ball);
+        container.getChildren().addAll(ball);
     }
 
     public void checkEdges(){
@@ -160,6 +160,7 @@ public class Mover {
         if(location.x > (maxWidth - radius)){
 
             if(xPos == true){
+                changeElement();
                 setBorder();
                 i ++;
             }else{
@@ -170,6 +171,7 @@ public class Mover {
         } else if(location.x < minWidth + radius){
 
             if(xNeg == true){
+                changeElement();
                 setBorder();
                 i ++;
             }else{
@@ -183,6 +185,7 @@ public class Mover {
         if(location.y > (maxHeight - radius)){
 
             if(yPos == true){
+                changeElement();
                 setBorder();
                 i ++;
             }else{
@@ -193,6 +196,7 @@ public class Mover {
         } else if(location.y < minHeight + radius){
 
             if(yNeg == true){
+                changeElement();
                 setBorder();
                 i ++;
             }else{
@@ -206,6 +210,7 @@ public class Mover {
         if(location.z > (maxDepth - radius)){
 
             if(zPos == true){
+                changeElement();
                 setBorder();
                 i ++;
             }else{
@@ -216,6 +221,7 @@ public class Mover {
         } else if(location.z < minDepth + radius){
 
             if(zNeg == true){
+                changeElement();
                 setBorder();
                 i ++;
             }else{

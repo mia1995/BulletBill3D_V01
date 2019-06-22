@@ -6,8 +6,9 @@ public class FreierFall extends Bahn {
         super(minX_, maxX_, minY_, maxY_, minZ_, maxZ_, xNeg_, xPos_, yNeg_, yPos_, zNeg_, zPos_);
     }
 
-    public static FreierFall createElement(){
-        FreierFall freierFall = new FreierFall(760,800,100,200,0,0, false, false, true,true,false,false);
+    public static FreierFall[] createElement(){
+        FreierFall[] freierFall = new FreierFall[1];
+        freierFall[0] = new FreierFall (770,800,100,200,0,0, false, false, true,true,false,false);
         return freierFall;
     }
 }

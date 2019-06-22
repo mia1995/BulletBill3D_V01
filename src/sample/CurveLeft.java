@@ -9,8 +9,8 @@ public class CurveLeft extends Bahn {
 
     public static CurveLeft[] createElement(){
         CurveLeft[] curveLefts = new CurveLeft[4];
-        curveLefts[0] = new CurveLeft(770, 800, 100, 120, 0, 0, false,false,false,false,false,false);
-        curveLefts[1] = new CurveLeft(740, 800, 120, 140, 0, 0, false,false,false,false,false,false);
+        curveLefts[0] = new CurveLeft(770, 800, 100, 110, 0, 0, false,false,true,false,false,false);
+        curveLefts[1] = new CurveLeft(755, 800, 110, 140, 0, 0, false,false,false,false,false,false);
         curveLefts[2] = new CurveLeft(720, 800, 140, 160, 0, 0, false,false,false,false,false,false);
         curveLefts[3] = new CurveLeft(700, 720, 160, 180, 0, 0, false,false,false,false,false,false);
         return curveLefts;

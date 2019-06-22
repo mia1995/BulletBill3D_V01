@@ -56,20 +56,22 @@ public class Mover {
         minHeight = currentElement.getMinY();
         minDepth = currentElement.getMinZ();
 
-        Rectangle rect = new Rectangle(minWidth, minHeight, maxWidth - minWidth, maxHeight - minHeight);
+        /*Rectangle rect = new Rectangle(minWidth, minHeight, maxWidth - minWidth, maxHeight - minHeight);
         rect.setFill(Color.TRANSPARENT);
         rect.setStroke(Color.BLACK);
-        container.getChildren().add(rect);
+        container.getChildren().add(rect);*/
 
         System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
     }
 
     public void drawBahnElements(){
-        for (int i = 0; i<ablauf.length - 1; i++){
-            for (int j = 0; j < ablauf[i].length; j++){
-                currentElement = (Bahn) ablauf[0][0];
+        for (int ii = 0; ii <= ablauf.length -1; ii++){
+            for (int jj = 0; jj <= ablauf[ii].length -1; jj++){
+                Bahn drawElement = (Bahn) ablauf[ii][jj];
 
-                Rectangle rect = new Rectangle(minWidth, minHeight, maxWidth - minWidth, maxHeight - minHeight);
+                System.out.println("test2");
+
+                Rectangle rect = new Rectangle(drawElement.getMinX(), drawElement.getMinY(), drawElement.getMaxX() - drawElement.getMinX(), drawElement.getMaxY() - drawElement.getMinY());
                 rect.setFill(Color.TRANSPARENT);
                 rect.setStroke(Color.BLACK);
                 container.getChildren().add(rect);
@@ -109,10 +111,11 @@ public class Mover {
             System.out.println("Index: " + j);
             i++;
             j = 0;
+
         } else{
             currentElement = (Bahn) ablauf[i][j];
             j++;
-            System.out.println("Bahn wurde durchlaufen");
+            //System.out.println("Bahn wurde durchlaufen");
         }
 
     }
@@ -154,9 +157,9 @@ public class Mover {
                 ball.setLayoutX(location.x);
                 ball.setLayoutY(location.y);
 
-                System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
+                /*System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
-                System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");
+                System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");*/
 
                 checkEdges();
             }
@@ -213,6 +216,7 @@ public class Mover {
             }else{
                 velocity.x *= -1;
                 //location.x = maxWidth;
+                System.out.println("x1-collision");
             }
 
         } else if(location.x < minWidth + radius){
@@ -222,6 +226,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.x *= -1;
+                System.out.println("x2-collision");
                 //location.x = minWidth + radius;
             }
         }
@@ -234,6 +239,7 @@ public class Mover {
             }else{
                 velocity.y *= -0.2;
                 location.y = maxHeight - radius;
+                System.out.println("y1-collision");
             }
 
         } else if(location.y < minHeight + radius){
@@ -244,6 +250,7 @@ public class Mover {
             }else{
                 velocity.y *= -1;
                 location.y = minHeight + radius;
+                System.out.println("y2-collision");
             }
         }
 

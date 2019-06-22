@@ -10,7 +10,7 @@ public class Curve extends Bahn {
         curves[0] = new Curve(730, 770, 100, 115 ,130, 170 ,false,false,true,true,false,false);
         curves[1] = new Curve(730 ,770, 115, 120, 125, 170, false,false,true,true,false,false);
         curves[2] = new Curve(730, 770, 120, 165, 115, 170, false,false,true,false,true,false);
-        curves[3] = new Curve(730, 770, 120, 165, 100, 115, false,false,false,false,false,true);
+        curves[3] = new Curve(730, 770, 120, 165, 100, 115, false,true,false,false,false,true);
         return curves;
     }
 

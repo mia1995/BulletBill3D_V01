@@ -70,18 +70,25 @@ public class Mover {
     public void changeElement(){
         //createAblauf();
 
-        currentElement = (Bahn) ablauf[i][j];
-        j++;
-        System.out.println("Index: " + j);
+        if(i == ablauf.length -1 ) {
 
-        if(j == ablauf[i].length - 1){
-            i ++;
-            j = 0;
+            currentElement = (Bahn) ablauf[i][j];
+            System.out.println("Index: " + j);
+            j++;
+
+            if (j == ablauf[i].length - 1) {
+                i++;
+                j = 0;
+            }
+
+        } else{
+            System.out.println("Bahn wurde durchlaufen");
         }
 
     }
 
     public Mover(){
+        //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         velocity = new PVector(0,0, 0);
         acceleration = new PVector(-0.001,0.01, 0);

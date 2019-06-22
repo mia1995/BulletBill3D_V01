@@ -24,7 +24,7 @@ public class Mover {
     int j = 0;
 
     FreierFall[] freierFall = FreierFall.createElement();
-    CurveLeft[] curveLefts = CurveLeft.createElement();
+    Curve[] curves = Curve.createElement();
 
     public static Pane container = new Pane();
     public static Scene scene = new Scene(container, 1000,800);
@@ -58,17 +58,31 @@ public class Mover {
         System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
     }
 
+    public void drawBahnElements(){
+        for (int i = 0; i<ablauf.length - 1; i++){
+            for (int j = 0; j < ablauf[i].length; j++){
+                currentElement = (Bahn) ablauf[0][0];
+
+                Rectangle rect = new Rectangle(minWidth, minHeight, maxWidth - minWidth, maxHeight - minHeight);
+                rect.setFill(Color.TRANSPARENT);
+                rect.setStroke(Color.BLACK);
+                container.getChildren().add(rect);
+            }
+        }
+    }
+
     public Object[] createAblauf(){
 
         ablauf = new Object[2][];
         ablauf[0] = freierFall;
-        ablauf[1] = curveLefts;
+        ablauf[1] = curves;
         return ablauf;
     }
 
     public void startwithElement(){
 
         createAblauf();
+        drawBahnElements();
         //System.out.println(ablauf[0][0]);
         currentElement = (Bahn) ablauf[0][0];
         i++;
@@ -98,8 +112,8 @@ public class Mover {
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.01, 0);
-        mass = 10.0;
+        acceleration = new PVector(-0.001,0.001, 0);
+        mass = 80.0;
     }
 
     public void applyForce(PVector force){
@@ -159,7 +173,7 @@ public class Mover {
         if(location.y > maxHeight) {
             setBorder();
             //location.y = freierFall[i].getMinY();
-            if (i < curveLefts.length -1) {
+            if (i < curves.length -1) {
                 i++;
             } else {
                 velocity.y *= -1;
@@ -209,8 +223,8 @@ public class Mover {
                 changeElement();
                 setBorder();
             }else{
-                velocity.y *= -1;
-                //location.y = maxHeight - radius;
+                velocity.y *= -0.2;
+                location.y = maxHeight - radius;
             }
 
         } else if(location.y < minHeight + radius){
@@ -220,7 +234,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.y *= -1;
-                //location.y = minHeight + radius;
+                location.y = minHeight + radius;
             }
         }
 

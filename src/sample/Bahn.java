@@ -2,7 +2,7 @@ package sample;
 
 import javafx.scene.layout.Pane;
 
-abstract class Bahn extends Pane {
+abstract class Bahn {
 
     private double minX;
     private double maxX;

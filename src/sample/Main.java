@@ -30,6 +30,8 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
+        //setborder muss hier einmal aufgerufen werden
+
         mover.applyForce(gravity);
         mover.applyForce(friction);
         mover.draw();

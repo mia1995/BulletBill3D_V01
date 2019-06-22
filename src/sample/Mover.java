@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Sphere;
 import javafx.util.Duration;
 
@@ -48,6 +49,12 @@ public class Mover {
         minWidth = currentElement.getMinX();
         minHeight = currentElement.getMinY();
         minDepth = currentElement.getMinZ();
+
+        Rectangle rect = new Rectangle(minWidth, minHeight, maxWidth - minWidth, maxHeight - minHeight);
+        rect.setFill(Color.TRANSPARENT);
+        rect.setStroke(Color.BLACK);
+        container.getChildren().add(rect);
+
         System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
     }
 
@@ -182,7 +189,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.x *= -1;
-                location.x = maxWidth;
+                //location.x = maxWidth;
             }
 
         } else if(location.x < minWidth + radius){
@@ -192,7 +199,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.x *= -1;
-                location.x = minWidth + radius;
+                //location.x = minWidth + radius;
             }
         }
 
@@ -225,7 +232,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.z *= -1;
-                location.z = maxDepth - radius;
+                //location.z = maxDepth - radius;
             }
 
         } else if(location.z < minDepth + radius){
@@ -235,7 +242,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.z *= -1;
-                location.z = minDepth + radius;
+                //location.z = minDepth + radius;
             }
 
         }

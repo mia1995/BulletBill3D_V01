@@ -27,6 +27,10 @@ public class Mover {
     Curve[] curves = Curve.createElement1();
     Curve[] curveKomplex = Curve.createElement2();
     Gerade[] gerade1 = Gerade.createElement1();
+    Curve[] curveDown = Curve.createElement3();
+    Gerade[] geradeDown = Gerade.createElement3();
+    Curve[] curveLeft = Curve.createElement4();
+    Gerade[] geradeLeft = Gerade.createElement4();
 
     public static Pane container = new Pane();
     public static Scene scene = new Scene(container, 1000,800);
@@ -75,11 +79,15 @@ public class Mover {
 
     public Object[] createAblauf(){
 
-        ablauf = new Object[4][];
+        ablauf = new Object[8][];
         ablauf[0] = freierFall;
         ablauf[1] = curves;
         ablauf[2] = curveKomplex;
         ablauf[3] = gerade1;
+        ablauf[4] = curveDown;
+        ablauf[5] = geradeDown;
+        ablauf[6] = curveLeft;
+        ablauf[7] = geradeLeft;
         return ablauf;
     }
 
@@ -100,7 +108,7 @@ public class Mover {
             currentElement = (Bahn) ablauf[i][j];
             System.out.println("Index: " + j);
             i++;
-
+            j = 0;
         } else{
             currentElement = (Bahn) ablauf[i][j];
             j++;
@@ -113,7 +121,7 @@ public class Mover {
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.001, 0);
+        acceleration = new PVector(-0.001,0.01, -0.0001);
         mass = 80.0;
     }
 

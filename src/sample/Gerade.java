@@ -9,8 +9,22 @@ public class Gerade extends Bahn {
     public static Gerade[] createElement1(){
         Gerade[] gerade = new Gerade[2];
         gerade[0] = new Gerade(500,700,100,220,30,70,true,true,false,false,false,false);
-        gerade[1] = new Gerade(300,500,200,320,30,70,true,true,false,false,false,false);
+        gerade[1] = new Gerade(300,500,200,320,30,70,false,true,false,false,false,false);
         return gerade;
+    }
+
+    public static Gerade[] createElement3(){
+        Gerade[] geradeDown = new Gerade[3];
+        geradeDown[0] = new Gerade(230,270,200,320,100,130,false,false,false,false,true,true);
+        geradeDown[1] = new Gerade(230,270,320,327,130,170,false,false,true,true,false,false);
+        geradeDown[2] = new Gerade(230,270,327,367,130,200,false,false,true,false,false,true);
+        return geradeDown;
+    }
+
+    public static Gerade[] createElement4(){
+        Gerade[] geradeLeft = new Gerade[1];
+        geradeLeft[0] = new Gerade(100,200,300,420,230,270,true,true,false,false,false,false);
+        return geradeLeft;
     }
 
 }

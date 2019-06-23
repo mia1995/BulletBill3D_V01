@@ -8,5 +8,7 @@ module BulletBill3D.V01 {
     requires javafx.web;
     requires javafx.swt;
 
-    opens sample;
+    opens Main;
+    opens fxml;
+    opens Controller;
 }

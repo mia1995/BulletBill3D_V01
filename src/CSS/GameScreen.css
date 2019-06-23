@@ -1,0 +1,24 @@
+#gameAnch {
+    -fx-background-color: #2E3449;
+}
+
+#gamePane {
+    -fx-background-color: white;
+}
+
+#menu {
+    -fx-background-color: #8FA1E3;
+}
+
+#playbtn, #breakbtn, #repeatbtn, #closebtn {
+    -fx-background-color: transparent;
+    -fx-background-radius: 0;
+}
+
+
+#paneBL, #paneTL, #paneTR {
+    -fx-background-color: #C1E3E9;
+
+
+}
+

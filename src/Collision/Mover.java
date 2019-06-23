@@ -57,7 +57,7 @@ public class Mover {
     double minDepth = freierFall[0].getMinZ();
 
     Bahn currentElement;
-
+/*
     public void setBorder(){
         maxWidth = currentElement.getMaxX();
         maxHeight = currentElement.getMaxY();
@@ -66,13 +66,13 @@ public class Mover {
         minHeight = currentElement.getMinY();
         minDepth = currentElement.getMinZ();
 
-        /*Rectangle rect = new Rectangle(minWidth, minHeight, maxWidth - minWidth, maxHeight - minHeight);
+        Rectangle rect = new Rectangle(minWidth, minHeight, maxWidth - minWidth, maxHeight - minHeight);
         rect.setFill(Color.TRANSPARENT);
         rect.setStroke(Color.BLACK);
-        container.getChildren().add(rect);*/
+        container.getChildren().add(rect);
 
-        System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
-    }
+        //System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
+    }*/
 
     public void drawBahnElementsFrontView(Pane container){
         for (int i = 0; i <= ablauf.length -1; i++){
@@ -145,21 +145,16 @@ public class Mover {
     }
 
     public void changeElement(){
-        /*
-        while (i < ablauf.length-1){
 
-            while ( j < ablauf.length - 1){
-                currentElement = (Bahn) ablauf[i][j];
-                j++;
-                if (j == ablauf[i].length - 1){
-                    currentElement = (Bahn) ablauf[i][j];
-                    i++;
-                    j=0;
-                }
-            }
-        }*/
+        maxWidth = currentElement.getMaxX();
+        maxHeight = currentElement.getMaxY();
+        maxDepth = currentElement.getMaxZ();
+        minWidth = currentElement.getMinX();
+        minHeight = currentElement.getMinY();
+        minDepth = currentElement.getMinZ();
 
-        //createAblauf();
+        System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
+
         if(i < ablauf.length){
 
             if(j == ablauf[i].length - 1 ) { //evtl while schleife besser?
@@ -168,10 +163,14 @@ public class Mover {
                 System.out.println("Index: " + j);
                 i++;
                 j = 0;
+                //setBorder();
+                //checkEdges();
 
             } else{
                 currentElement = (Bahn) ablauf[i][j];
                 j++;
+                //setBorder();
+                //checkEdges();
                 //System.out.println("Bahn wurde durchlaufen");
             }
         }
@@ -182,7 +181,7 @@ public class Mover {
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.01, -0.0001);
+        acceleration = new PVector(-0.001,0.01, -0.01);
         mass = 80.0;
     }
 
@@ -226,8 +225,6 @@ public class Mover {
         }));
         timeline.play();
 
-        //freierFall.getChildren().add(ball);
-        //element1.getChildren().add(freierFall);
         frontView.getChildren().addAll(ballFrontView);
         topView.getChildren().addAll(ballTopView);
         sideView.getChildren().addAll(ballLeftView);
@@ -274,7 +271,7 @@ public class Mover {
 
             if(xPos == true){
                 changeElement();
-                setBorder();
+                //setBorder();
             }else{
                 velocity.x *= -1;
                 location.x = maxWidth;
@@ -285,7 +282,7 @@ public class Mover {
 
             if(xNeg == true){
                 changeElement();
-                setBorder();
+                //setBorder();
             }else{
                 velocity.x *= -1;
                 //System.out.println("x2-collision");
@@ -297,7 +294,7 @@ public class Mover {
 
             if(yPos == true){
                 changeElement();
-                setBorder();
+                //setBorder();
             }else{
                 velocity.y *= -0.2;
                 location.y = maxHeight - radius;
@@ -308,7 +305,7 @@ public class Mover {
 
             if(yNeg == true){
                 changeElement();
-                setBorder();
+                //setBorder();
             }else{
                 velocity.y *= -1;
                 location.y = minHeight + radius;
@@ -321,7 +318,7 @@ public class Mover {
 
             if(zPos == true){
                 changeElement();
-                setBorder();
+                //setBorder();
             }else{
                 velocity.z *= -1;
                 location.z = maxDepth - radius;
@@ -331,7 +328,7 @@ public class Mover {
 
             if(zNeg == true){
                 changeElement();
-                setBorder();
+                //setBorder();
             }else{
                 velocity.z *= -1;
                 location.z = minDepth + radius;

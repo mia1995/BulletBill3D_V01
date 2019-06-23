@@ -93,10 +93,6 @@ public class CollisionController implements Initializable {
 
         mover.applyForce(gravity);
         mover.applyForce(friction);
-
-
-
-
     }
 
     public void playGame() {

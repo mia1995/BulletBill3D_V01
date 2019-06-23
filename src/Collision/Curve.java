@@ -32,7 +32,7 @@ public class Curve extends Bahn {
 
     public static Curve[] createElement4(){
         Curve[] curveLeft = new Curve[3];
-        curveLeft[0] = new Curve(230,270,300,420,200,215,false,false,false,false,false,true);
+        curveLeft[0] = new Curve(230,270,300,420,200,215,false,false,false,false,true,true);
         curveLeft[1] = new Curve(215,270,300,420,215,270,true,false,false,false,true,false);
         curveLeft[2] = new Curve(200,215,300,420,230,270,true,true,false,false,false,false);
         return curveLeft;

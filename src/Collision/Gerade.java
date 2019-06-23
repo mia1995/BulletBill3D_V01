@@ -21,10 +21,11 @@ public class Gerade extends Bahn {
     }
 
     public static Gerade[] createElement3(){
-        Gerade[] geradeDown = new Gerade[3];
+        Gerade[] geradeDown = new Gerade[4];
         geradeDown[0] = new Gerade(230,270,200,320,100,130,false,false,false,false,true,true);
-        geradeDown[1] = new Gerade(230,270,320,327,130,170,false,false,true,true,false,false);
-        geradeDown[2] = new Gerade(230,270,327,367,130,200,false,false,true,false,false,true);
+        geradeDown[1] = new Gerade(230,270,200,320,130,170,false,false,false,true,true,false);
+        geradeDown[2] = new Gerade(230,270,320,327,130,180,false,false,true,true,false,false);
+        geradeDown[3] = new Gerade(230,270,327,367,130,200,false,false,true,false,false,true);
         return geradeDown;
     }
 

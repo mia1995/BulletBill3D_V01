@@ -134,23 +134,27 @@ public class Mover {
     }
 
     public void startwithElement(Pane frontView, Pane topView, Pane sideView){
+
         createAblauf();
         drawBahnElementsFrontView(frontView);
         drawBahnElementsTopView(topView);
         drawBahnElementsSideView(sideView);
         //System.out.println(ablauf[0][0]);
+        //System.out.println("IndexI: " + i + " indexJ: " + j);
         currentElement = (Bahn) ablauf[i][j];
         i++;
     }
 
     public void changeElement(){
 
+        //System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
+
         if(i < ablauf.length){
 
             if(j == ablauf[i].length - 1 ) { //evtl while schleife besser?
 
                 currentElement = (Bahn) ablauf[i][j];
-                System.out.println("Index: " + j);
+                //System.out.println("IndexI: " + i + " indexJ: " + j);
                 i++;
                 j = 0;
                 //setBorder();
@@ -158,21 +162,20 @@ public class Mover {
 
             } else{
                 currentElement = (Bahn) ablauf[i][j];
+                //System.out.println("IndexI: " + i + " indexJ: " + j);
                 j++;
                 //setBorder();
                 //checkEdges();
                 //System.out.println("Bahn wurde durchlaufen");
             }
-            minWidth = currentElement.getMinX();
-            maxWidth = currentElement.getMaxX();
-            minHeight = currentElement.getMinY();
-            maxHeight = currentElement.getMaxY();
-            minDepth = currentElement.getMinZ();
-            maxDepth = currentElement.getMaxZ();
-
-            System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
         }
 
+        maxWidth = currentElement.getMaxX();
+        maxHeight = currentElement.getMaxY();
+        maxDepth = currentElement.getMaxZ();
+        minWidth = currentElement.getMinX();
+        minHeight = currentElement.getMinY();
+        minDepth = currentElement.getMinZ();
 
     }
 
@@ -180,7 +183,7 @@ public class Mover {
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.01, -0.001);
+        acceleration = new PVector(-0.001,0.01, -0.01);
         mass = 80.0;
     }
 
@@ -217,7 +220,7 @@ public class Mover {
                 /*System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
                 System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");*/
-                System.out.println(currentElement);
+                //System.out.println(currentElement);
 
                 checkEdges();
             }
@@ -258,30 +261,33 @@ public class Mover {
     }
 
     public void checkEdges(){
-        boolean xNeg = currentElement.getXNeg();
-        boolean xPos = currentElement.getXPos();
-        boolean yNeg = currentElement.getYNeg();
-        boolean yPos = currentElement.getYPos();
-        boolean zNeg = currentElement.getZNeg();
-        boolean zPos = currentElement.getZPos();
+
+        int xNeg = currentElement.getXNeg();
+        int xPos = currentElement.getXPos();
+        int yNeg = currentElement.getYNeg();
+        int yPos = currentElement.getYPos();
+        int zNeg = currentElement.getZNeg();
+        int zPos = currentElement.getZPos();
+
+        //System.out.println("xball: " +location.x + " > max: " + (maxWidth - radius) + "xball: " + location.x + " < min: " + (minWidth + radius));
 
         if(location.x > (maxWidth - radius)){
 
-            if(xPos == true){
+            if(xPos == 1){
                 changeElement();
                 //setBorder();
-            }else{
+            }else if (xPos == 0){
                 velocity.x *= -1;
                 location.x = maxWidth;
                 //System.out.println("x1-collision");
             }
 
-        } else if(location.x <= minWidth + radius){
+        } else if(location.x < minWidth + radius){
 
-            if(xNeg == true){
+            if(xNeg == 1){
                 changeElement();
                 //setBorder();
-            }else{
+            }else if (xNeg == 0){
                 velocity.x *= -1;
                 //System.out.println("x2-collision");
                 location.x = minWidth + radius;
@@ -290,10 +296,10 @@ public class Mover {
 
         if(location.y > (maxHeight - radius)){
 
-            if(yPos == true){
+            if(yPos == 1){
                 changeElement();
                 //setBorder();
-            }else{
+            }else if (yPos == 0){
                 velocity.y *= -0.2;
                 location.y = maxHeight - radius;
                 //System.out.println("y1-collision");
@@ -301,10 +307,10 @@ public class Mover {
 
         } else if(location.y < minHeight + radius){
 
-            if(yNeg == true){
+            if(yNeg == 1){
                 changeElement();
                 //setBorder();
-            }else{
+            }else if(yNeg == 0){
                 velocity.y *= -1;
                 location.y = minHeight + radius;
                 //System.out.println("y2-collision");
@@ -314,24 +320,26 @@ public class Mover {
 
         if(location.z > (maxDepth - radius)){
 
-            if(zPos == true){
+            if(zPos == 1){
                 changeElement();
                 //setBorder();
-            }else{
+            }else if(zPos == 0){
                 velocity.z *= -1;
                 location.z = maxDepth - radius;
             }
 
         } else if(location.z < minDepth + radius){
 
-            if(zNeg == true){
+            if(zNeg == 1){
                 changeElement();
                 //setBorder();
-            }else{
+            }else if(zNeg == 0){
                 velocity.z *= -1;
                 location.z = minDepth + radius;
             }
 
+        } else {
+            //System.out.println("kein ChangeElement");
         }
 
     }

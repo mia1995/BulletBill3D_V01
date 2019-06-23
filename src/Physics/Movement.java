@@ -71,8 +71,8 @@ public class Movement {
         sphereXZ.setY0(sphereXY.getY0());
         sphereYZ.setX0(sphereXY.getX0());
 
-        System.out.println("Pos: " + "x: " + (int) sphere.getX0() + ", y: " + (int) sphere.getY0() + ", z: " + (int) sphere.getZ0());
-        System.out.println("Velocity: " + "vx: " + (int) sphere.getVx() + ", vy: " + (int) sphere.getVy() + ", vz: " + (int) sphere.getVz());
+        //System.out.println("Pos: " + "x: " + (int) sphere.getX0() + ", y: " + (int) sphere.getY0() + ", z: " + (int) sphere.getZ0());
+        //System.out.println("Velocity: " + "vx: " + (int) sphere.getVx() + ", vy: " + (int) sphere.getVy() + ", vz: " + (int) sphere.getVz());
 
 
         //Methode zur Kugelbewegung

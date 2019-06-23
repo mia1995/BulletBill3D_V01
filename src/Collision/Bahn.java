@@ -1,6 +1,6 @@
 package Collision;
 
-abstract class Bahn {
+abstract class Bahn{
 
     private double minX;
     private double maxX;
@@ -9,14 +9,14 @@ abstract class Bahn {
     private double minZ;
     private double maxZ;
 
-    private boolean xNeg;
-    private boolean xPos;
-    private boolean yNeg;
-    private boolean yPos;
-    private boolean zNeg;
-    private boolean zPos;
+    private int xNeg;
+    private int xPos;
+    private int yNeg;
+    private int yPos;
+    private int zNeg;
+    private int zPos;
 
-    public Bahn (double minX_, double maxX_, double minY_, double maxY_, double minZ_, double maxZ_, boolean xNeg_, boolean xPos_, boolean yNeg_, boolean yPos_, boolean zNeg_, boolean zPos_){
+    public Bahn (double minX_, double maxX_, double minY_, double maxY_, double minZ_, double maxZ_, int xNeg_, int xPos_, int yNeg_, int yPos_, int zNeg_, int zPos_){
         this.minX = minX_;
         this.maxX = maxX_;
         this.minY = minY_;
@@ -56,15 +56,15 @@ abstract class Bahn {
         return maxZ;
     }
 
-    public boolean getXNeg(){return xNeg; }
+    public int getXNeg(){return xNeg; }
 
-    public boolean getXPos(){return xPos; }
+    public int getXPos(){return xPos; }
 
-    public boolean getYNeg(){return yNeg; }
+    public int getYNeg(){return yNeg; }
 
-    public boolean getYPos(){return yPos; }
+    public int getYPos(){return yPos; }
 
-    public boolean getZNeg(){return zNeg; }
+    public int getZNeg(){return zNeg; }
 
-    public boolean getZPos(){return zPos; }
+    public int getZPos(){return zPos; }
 }

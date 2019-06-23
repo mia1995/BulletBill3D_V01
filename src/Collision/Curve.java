@@ -9,23 +9,23 @@ public class Curve extends Bahn {
         Curve[] curves = new Curve[3];
         curves[0] = new Curve(730, 770, 100, 115 ,130, 170 ,false,false,true,true,false,false);
         curves[1] = new Curve(730 ,770, 115, 165, 115, 170, false,false,true,false,true,false);
-        //curves[2] = new Curve(730, 770, 120, 165, 115, 170, false,false,true,false,true,false);
         curves[2] = new Curve(730, 770, 120, 165, 100, 115, false,false,false,false,true,true);
         return curves;
     }
 
     public static Curve[] createElement2(){
-        Curve[] curveKomplex = new Curve[3];
-        curveKomplex[0] = new Curve(730,770,120,165,85,100,false,false,false,false, true,true);
-        curveKomplex[1] = new Curve(714,770,120,185,30,85, false,false,false,true,false,true);
-        curveKomplex[2] = new Curve(700,770,145,185,30,70, true,true,false,false,false,false);
+        Curve[] curveKomplex = new Curve[4];
+        curveKomplex[0] = new Curve(715,770,120,165,70,100,false,false,false,false, true,true);
+        curveKomplex[1] = new Curve(715,770,120,145,30,70, false,false,false,true,false,true);
+        curveKomplex[2] = new Curve(715,770,145,185,30,70, true,false,true,false,false,true);
+        curveKomplex[3] = new Curve(700,715,145,185,30,70, true,true,false,false,false,false);
         return curveKomplex;
     }
 
     public static Curve[] createElement3(){
         Curve[] curveDown = new Curve[3];
         curveDown[0] = new Curve(285,300,200,320,30,70,true,true,false,false,false,false);
-        curveDown[1] = new Curve(230,285,200,320,30,85,false,false,true,false,false,false);
+        curveDown[1] = new Curve(230,285,200,320,30,85,false,true,false,false,false,true);
         curveDown[2] = new Curve(230,270,200,320,85,100,false,false,false,false,true,true);
         return curveDown;
     }

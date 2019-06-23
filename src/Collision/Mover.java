@@ -134,7 +134,6 @@ public class Mover {
     }
 
     public void startwithElement(Pane frontView, Pane topView, Pane sideView){
-
         createAblauf();
         drawBahnElementsFrontView(frontView);
         drawBahnElementsTopView(topView);
@@ -145,15 +144,6 @@ public class Mover {
     }
 
     public void changeElement(){
-
-        maxWidth = currentElement.getMaxX();
-        maxHeight = currentElement.getMaxY();
-        maxDepth = currentElement.getMaxZ();
-        minWidth = currentElement.getMinX();
-        minHeight = currentElement.getMinY();
-        minDepth = currentElement.getMinZ();
-
-        System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
 
         if(i < ablauf.length){
 
@@ -173,7 +163,16 @@ public class Mover {
                 //checkEdges();
                 //System.out.println("Bahn wurde durchlaufen");
             }
+            minWidth = currentElement.getMinX();
+            maxWidth = currentElement.getMaxX();
+            minHeight = currentElement.getMinY();
+            maxHeight = currentElement.getMaxY();
+            minDepth = currentElement.getMinZ();
+            maxDepth = currentElement.getMaxZ();
+
+            System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
         }
+
 
     }
 
@@ -181,7 +180,7 @@ public class Mover {
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.01, -0.01);
+        acceleration = new PVector(-0.001,0.01, -0.001);
         mass = 80.0;
     }
 
@@ -259,7 +258,6 @@ public class Mover {
     }
 
     public void checkEdges(){
-
         boolean xNeg = currentElement.getXNeg();
         boolean xPos = currentElement.getXPos();
         boolean yNeg = currentElement.getYNeg();
@@ -278,7 +276,7 @@ public class Mover {
                 //System.out.println("x1-collision");
             }
 
-        } else if(location.x < minWidth + radius){
+        } else if(location.x <= minWidth + radius){
 
             if(xNeg == true){
                 changeElement();

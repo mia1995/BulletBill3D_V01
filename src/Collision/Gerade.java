@@ -7,14 +7,16 @@ public class Gerade extends Bahn {
     }
 
     public static Gerade[] createElement1(){
-        Gerade[] gerade = new Gerade[1];
-        gerade[0] = new Gerade(500,700,100,220,30,70,true,true,false,false,false,false);
-        return gerade;
+        Gerade[] gerade1 = new Gerade[2];
+        gerade1[0] = new Gerade(600,700,100,220,30,70,true,false,false,false,false,false);
+        gerade1[1] = new Gerade(500,600,100,220,30,70,true,true,false,false,false,false);
+        return gerade1;
     }
 
     public static Gerade[] createElement2(){
-        Gerade[] gerade2 = new Gerade[1];
-        gerade2[0] = new Gerade(300,500,200,320,30,70,true,true,false,false,false,false);
+        Gerade[] gerade2 = new Gerade[2];
+        gerade2[0] = new Gerade(400,500,200,320,30,70,true,true,false,false,false,false);
+        gerade2[1] = new Gerade(300,400,200,320,30,70,true,true,false,false,false,false);
         return gerade2;
     }
 

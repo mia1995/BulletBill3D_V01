@@ -6,19 +6,19 @@ public class Curve extends Bahn {
     }
 
     public static Curve[] createElement1(){
-        Curve[] curves = new Curve[4];
+        Curve[] curves = new Curve[3];
         curves[0] = new Curve(730, 770, 100, 115 ,130, 170 ,false,false,true,true,false,false);
-        curves[1] = new Curve(730 ,770, 115, 120, 125, 170, false,false,true,true,false,false);
-        curves[2] = new Curve(730, 770, 120, 165, 115, 170, false,false,true,false,true,false);
-        curves[3] = new Curve(730, 770, 120, 165, 100, 115, false,true,false,false,false,true);
+        curves[1] = new Curve(730 ,770, 115, 165, 125, 170, false,false,true,false,true,false);
+        // curves[2] = new Curve(730, 770, 120, 165, 115, 170, false,false,true,false,true,false);
+        curves[2] = new Curve(730, 770, 120, 165, 100, 115, false,true,false,false,false,true);
         return curves;
     }
 
     public static Curve[] createElement2(){
         Curve[] curveKomplex = new Curve[3];
         curveKomplex[0] = new Curve(730,770,120,165,85,100,false,false,false,false, true,true);
-        curveKomplex[1] = new Curve(714,770,120,185,30,85, false,false,false,true,false,true);
-        curveKomplex[2] = new Curve(700,770,164,185,30,70, true,true,false,false,false,false);
+        curveKomplex[1] = new Curve(714,770,120,185,30,85, false,false,false,false,false,true);
+        curveKomplex[2] = new Curve(700,770,145,185,30,70, true,true,false,false,false,false);
         return curveKomplex;
     }
 
@@ -36,5 +36,21 @@ public class Curve extends Bahn {
         curveLeft[1] = new Curve(215,230,300,420,215,270,true,false,false,false,true,false);
         curveLeft[2] = new Curve(200,215,300,420,230,270,true,true,false,false,false,false);
         return curveLeft;
+    }
+
+    public static Curve[] createElement5(){
+        Curve[] curveDown2 = new Curve[3];
+        curveDown2[0] = new Curve(85,100,300,420,230,270,true,true,false,false,false,false);
+        curveDown2[1] = new Curve(30,85,300,420,230,285,false,true,false,false,false,true);
+        curveDown2[2] = new Curve(30,70,300,420,285,300,false,false,false,false,true,true);
+        return curveDown2;
+    }
+
+    public static Curve[] createElement6(){
+        Curve[] curveRight = new Curve[3];
+        curveRight[0] = new Curve(30,70,300,420,300,315,false,false,false,false,true,true);
+        curveRight[1] = new Curve(30,85,300,420,315,370,false,true,false,false,true,false);
+        curveRight[2] = new Curve(85,100,300,420,330,370,true,true,false,false,false,false);
+        return curveRight;
     }
 }

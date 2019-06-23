@@ -27,4 +27,10 @@ public class Gerade extends Bahn {
         return geradeLeft;
     }
 
+    public static Gerade[] createElement5(){
+        Gerade[] geradeRight = new Gerade[1];
+        geradeRight[0] = new Gerade(100,200,300,420,330,370,true,false,false,false,false,false);
+        return geradeRight;
+    }
+
 }

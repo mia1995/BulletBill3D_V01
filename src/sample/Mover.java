@@ -31,6 +31,9 @@ public class Mover {
     Gerade[] geradeDown = Gerade.createElement3();
     Curve[] curveLeft = Curve.createElement4();
     Gerade[] geradeLeft = Gerade.createElement4();
+    Curve[] curveLeft2 = Curve.createElement5();
+    Curve[] curveRight = Curve.createElement6();
+    Gerade[] geradeRight = Gerade.createElement5();
 
     public static Pane container = new Pane();
     public static Scene scene = new Scene(container, 1000,800);
@@ -81,7 +84,7 @@ public class Mover {
 
     public Object[] createAblauf(){
 
-        ablauf = new Object[8][];
+        ablauf = new Object[11][];
         ablauf[0] = freierFall;
         ablauf[1] = curves;
         ablauf[2] = curveKomplex;
@@ -90,6 +93,9 @@ public class Mover {
         ablauf[5] = geradeDown;
         ablauf[6] = curveLeft;
         ablauf[7] = geradeLeft;
+        ablauf[8] = curveLeft2;
+        ablauf[9] = curveRight;
+        ablauf[10] = geradeRight;
         return ablauf;
     }
 
@@ -105,7 +111,7 @@ public class Mover {
     public void changeElement(){
         //createAblauf();
 
-        if(j == ablauf[i].length -1 ) {
+        if(j == ablauf[i].length - 1 ) {
 
             currentElement = (Bahn) ablauf[i][j];
             System.out.println("Index: " + j);
@@ -173,34 +179,6 @@ public class Mover {
 
     public void checkEdges(){
 
-        /*if(location.x > (maxWidth - radius)){
-            velocity.x *= -1;
-            location.x = maxWidth;
-
-        } else if(location.x < minWidth + radius){
-            velocity.x *= -1;
-            location.x = radius;
-        }
-
-        if(location.y > maxHeight) {
-            setBorder();
-            //location.y = freierFall[i].getMinY();
-            if (i < curves.length -1) {
-                i++;
-            } else {
-                velocity.y *= -1;
-                location.y = maxHeight - radius;
-            }
-        }
-
-        if(location.z > (maxDepth - radius)){
-            velocity.z *= -1;
-            location.z = maxDepth;
-        } else if (location.z < minHeight + radius){
-            velocity.z *= -1;
-            location.z = radius;
-        }*/
-
         boolean xNeg = currentElement.getXNeg();
         boolean xPos = currentElement.getXPos();
         boolean yNeg = currentElement.getYNeg();
@@ -215,7 +193,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.x *= -1;
-                //location.x = maxWidth;
+                location.x = maxWidth;
                 System.out.println("x1-collision");
             }
 
@@ -227,7 +205,7 @@ public class Mover {
             }else{
                 velocity.x *= -1;
                 System.out.println("x2-collision");
-                //location.x = minWidth + radius;
+                location.x = minWidth + radius;
             }
         }
 
@@ -262,7 +240,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.z *= -1;
-                //location.z = maxDepth - radius;
+                location.z = maxDepth - radius;
             }
 
         } else if(location.z < minDepth + radius){
@@ -272,7 +250,7 @@ public class Mover {
                 setBorder();
             }else{
                 velocity.z *= -1;
-                //location.z = minDepth + radius;
+                location.z = minDepth + radius;
             }
 
         }

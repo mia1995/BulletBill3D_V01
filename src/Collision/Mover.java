@@ -47,7 +47,6 @@ public class Mover {
     Curve[] curveRight = Curve.createElement6();
     Gerade[] geradeRight = Gerade.createElement5();
 
-
     Sphere ballFrontView;
     Sphere ballTopView;
     Sphere ballLeftView;
@@ -87,11 +86,10 @@ public class Mover {
     Bahn currentElement;
 
     public Mover(){
-        //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.01, -0.001);
-        mass = 80.0;
+        acceleration = new PVector(0,0.01, 0);
+        mass = 20.0;
     }
 
 

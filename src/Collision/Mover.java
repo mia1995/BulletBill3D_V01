@@ -183,7 +183,7 @@ public class Mover {
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.01, -0.01);
+        acceleration = new PVector(-0.001,0.01, -0.001);
         mass = 80.0;
     }
 
@@ -260,7 +260,19 @@ public class Mover {
         j = 0;
         startwithElement(frontView, topView, sideView);
 
+        maxWidth = currentElement.getMaxX();
+        maxHeight = currentElement.getMaxY();
+        maxDepth = currentElement.getMaxZ();
+        minWidth = currentElement.getMinX();
+        minHeight = currentElement.getMinY();
+        minDepth = currentElement.getMinZ();
 
+        location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
+        velocity = new PVector(0,0, 0);
+        acceleration = new PVector(-0.001,0.01, -0.001);
+        mass = 80.0;
+
+        timeline.play();
 
     }
 
@@ -279,12 +291,16 @@ public class Mover {
         if(location.x > (maxWidth - radius)){
 
             if(xPos == 1){
+                //hier xPos vom Element gleich 2 setzen.
                 changeElement();
                 //setBorder();
             }else if (xPos == 0){
                 velocity.x *= -1;
                 location.x = maxWidth;
                 //System.out.println("x1-collision");
+            } else if (xPos == 2){
+                //hier xPos vom Element gleich 1 setzen.
+                //und changeElement 1 zurück. Vielleicht mit neuer Methode.
             }
 
         } else if(location.x < minWidth + radius){

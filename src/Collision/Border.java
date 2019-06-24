@@ -3,7 +3,7 @@ package Collision;
 import javafx.scene.shape.Line;
 
 public class Border {
-    public javafx.scene.shape.Line[] createLines(){
+    public static Line[] createLines(){
         Line[] lines = new Line[10];
         // i = 1; j = 1; Seitenansicht Y-Z
         lines[0] = new Line(130,170,170,120);

@@ -29,10 +29,16 @@ public class Mover {
 
     public double velo;
 
+    int[][] linePosition = {{1,1}, {2,1}, {2,2}, {2,1}, {2,2}, {5,1}, {6,2}, {7,1}, {9,1}, {10,1}};
+
     Object[][] ablauf;
+
+    Line line1;
 
     int i = 0;
     int j = 0;
+
+    int k = 0;
 
     FreierFall[] freierFall = FreierFall.createElement();
     Curve[] curves = Curve.createElement1();
@@ -47,12 +53,15 @@ public class Mover {
     Curve[] curveRight = Curve.createElement6();
     Gerade[] geradeRight = Gerade.createElement5();
 
+    Line[] lines = Border.createLines();
+
 
     Sphere ballFrontView;
     Sphere ballTopView;
     Sphere ballLeftView;
 
-    javafx.scene.shape.Line line;
+    //Line line1 = new Line(760,185,30,770,120,70);
+    //javafx.scene.shape.Line line;
 
     double radius = 15;
     public double mass;
@@ -93,7 +102,6 @@ public class Mover {
         acceleration = new PVector(-0.001,0.01, -0.001);
         mass = 80.0;
     }
-
 
     public void drawBahnElementsFrontView(Pane container) {
         for (int i = 0; i <= ablauf.length - 1; i++) {
@@ -167,12 +175,12 @@ public class Mover {
         currentElement = (Bahn) ablauf[i][j];
         i++;
 
-        line = new javafx.scene.shape.Line(270,85,285,85);
+        /*line = new javafx.scene.shape.Line(270,85,285,85);
 
         line.setStroke(Color.BLUE);
         line.setStrokeWidth(1);
         line.toFront();
-        topView.getChildren().add(line);
+        topView.getChildren().add(line);*/
     }
 
     public void changeElement(){
@@ -214,6 +222,9 @@ public class Mover {
     }
 
     public void draw(Pane frontView, Pane topView, Pane sideView, Label label) {
+
+        //System.out.println(linePosition[0][1]);
+        //System.out.println(linePosition[2][0]);
 
         startwithElement(frontView, topView, sideView);
         ballFrontView = new Sphere(radius);
@@ -308,7 +319,30 @@ public class Mover {
         int zNeg = currentElement.getZNeg();
         int zPos = currentElement.getZPos();
 
+        if (k < lines.length) {
+
+            //System.out.println(k);
+
+            if (i == linePosition[k][0] && j == linePosition[k][1]) {
+
+                line1 = lines[k];
+                //line1 = new Line(760,185,30,770,120,70);
+
+                lineCollision();
+
+                System.out.println(k);
+
+                k++;
+            }
+        }
+
         //System.out.println("xball: " +location.x + " > max: " + (maxWidth - radius) + "xball: " + location.x + " < min: " + (minWidth + radius));
+
+        //line1 = new Line(270,300,85,285,300,70);
+
+        /*if (ballFrontView.getBoundsInParent().intersects(line1.getBoundsInParent())) {
+            velocity.x *= -1;
+        }*/
 
         if (location.x > (maxWidth - radius)) {
 
@@ -387,14 +421,20 @@ public class Mover {
     }
 
     public void lineCollision(){
-        double distX = line.getStartX() - line.getEndX();
-        double distZ = line.getStartY() - line.getEndY();
+
+        System.out.println(line1.getStartX());
+        System.out.println(line1.getStartY());
+        System.out.println(line1.getEndX());
+        System.out.println(line1.getEndY());
+
+        double distX = line1.getStartX() - line1.getEndX();
+        double distZ = line1.getStartY() - line1.getEndY();
         double len = Math.sqrt((distX*distX) + (distZ*distZ));
 
-        double dot = ( ((location.x - line.getStartX())*(line.getEndX()-line.getStartX()) + ( (location.z-line.getStartY())*(line.getEndY()-line.getStartY())))) / Math.pow(len,2);
+        double dot = ( ((location.x - line1.getStartX())*(line1.getEndX()-line1.getStartX()) + ( (location.z-line1.getStartY())*(line1.getEndY()-line1.getStartY())))) / Math.pow(len,2);
 
-        double closestX = line.getStartX() + (dot * (line.getEndX() - line.getStartX()));
-        double closestZ = line.getStartY() + (dot * (line.getEndY() - line.getStartY()));
+        double closestX = line1.getStartX() + (dot * (line1.getEndX() - line1.getStartX()));
+        double closestZ = line1.getStartY() + (dot * (line1.getEndY() - line1.getStartY()));
 
         distX = closestX - location.x;
         distZ = closestZ - location.z;
@@ -403,6 +443,8 @@ public class Mover {
         if (distance <= radius){
             velocity.x *= -1;
             velocity.z *= -1;
+
+            System.out.println("ja");
         }
     }
 
@@ -438,6 +480,7 @@ public class Mover {
     public boolean isSpherePosition01() {
         return spherePosition01;
     }
+
 
     public boolean isSpherePosition02() {
         return spherePosition02;

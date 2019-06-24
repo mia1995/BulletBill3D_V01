@@ -34,6 +34,30 @@ abstract class Bahn extends Pane {
         this.zPos = zPos_;
     }
 
+    public void setxNeg(int xNeg) {
+        this.xNeg = xNeg;
+    }
+
+    public void setxPos(int xPos) {
+        this.xPos = xPos;
+    }
+
+    public void setyNeg(int yNeg) {
+        this.yNeg = yNeg;
+    }
+
+    public void setyPos(int yPos) {
+        this.yPos = yPos;
+    }
+
+    public void setzNeg(int zNeg) {
+        this.zNeg = zNeg;
+    }
+
+    public void setzPos(int zPos) {
+        this.zPos = zPos;
+    }
+
     public double getMinX() {
         return minX;
     }

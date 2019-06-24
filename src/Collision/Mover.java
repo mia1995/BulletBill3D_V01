@@ -86,15 +86,6 @@ public class Mover {
 
     Bahn currentElement;
 
-/*
-    public void setBorder(){
-        maxWidth = currentElement.getMaxX();
-        maxHeight = currentElement.getMaxY();
-        maxDepth = currentElement.getMaxZ();
-        minWidth = currentElement.getMinX();
-        minHeight = currentElement.getMinY();
-        minDepth = currentElement.getMinZ();
-*/
     public Mover(){
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
@@ -181,18 +172,8 @@ public class Mover {
         line.setStrokeWidth(1);
         line.toFront();
         topView.getChildren().add(line);
-
-
     }
-/*
-    public void checkLines(){
-        if (ballTopView.intersects(line.getBoundsInLocal())){
-            radius = 40;
 
-    public void changeElement() {
-        }
-    }
-*/
     public void changeElement(){
 
         //System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
@@ -275,7 +256,7 @@ public class Mover {
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
                 System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");*/
                 //System.out.println(currentElement);
-                lineCollision();
+                //lineCollision();
                 checkEdges();
             }
         }));
@@ -342,7 +323,7 @@ public class Mover {
                 //setBorder();
             } else if (xPos == 0) {
                 velocity.x *= -1;
-                location.x = maxWidth;
+                location.x = maxWidth - radius;
                 //System.out.println("x1-collision");
             } else if (xPos == 2) {
                 //hier xPos vom Element gleich 1 setzen.
@@ -409,6 +390,7 @@ public class Mover {
         }
 
     }
+
     public void lineCollision(){
         double distX = line.getStartX() - line.getEndX();
         double distZ = line.getStartY() - line.getEndY();

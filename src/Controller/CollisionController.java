@@ -191,7 +191,7 @@ public class CollisionController implements Initializable {
 
         mover = new Mover();
 
-        PVector gravity = new PVector(0, 0.01 * mover.mass, 0);
+        PVector gravity = new PVector(0, 0.981 * mover.mass, 0);
         PVector friction = mover.velocity;
         friction.mult(-1);
         friction.normalize();

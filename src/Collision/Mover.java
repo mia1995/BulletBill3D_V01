@@ -46,6 +46,8 @@ public class Mover {
     Sphere ballTopView;
     Sphere ballLeftView;
 
+    Line line1;
+
     double radius = 15;
     public double mass;
 
@@ -105,8 +107,6 @@ public class Mover {
         for (int i = 0; i <= ablauf.length -1; i++){
             for (int j = 0; j <= ablauf[i].length -1; j++){
                 Bahn drawElement = (Bahn) ablauf[i][j];
-
-
                 Rectangle rect = new Rectangle(drawElement.getMinZ(), drawElement.getMinY(), drawElement.getMaxZ() - drawElement.getMinZ(), drawElement.getMaxY() - drawElement.getMinY());
                 rect.setFill(Color.TRANSPARENT);
                 rect.setStroke(Color.BLACK);
@@ -196,6 +196,8 @@ public class Mover {
     public void draw(Pane frontView, Pane topView, Pane sideView){
 
         startwithElement(frontView, topView, sideView);
+
+
 
         ballFrontView = new Sphere(radius);
         ballFrontView.relocate(location.x, location.y);
@@ -287,6 +289,12 @@ public class Mover {
         int zPos = currentElement.getZPos();
 
         //System.out.println("xball: " +location.x + " > max: " + (maxWidth - radius) + "xball: " + location.x + " < min: " + (minWidth + radius));
+
+        line1 = new Line(270,300,85,285,300,70);
+
+        if(ballFrontView.getBoundsInParent().intersects(line1.getBoundsInParent())){
+            velocity.x *= -1;
+        }
 
         if(location.x > (maxWidth - radius)){
 

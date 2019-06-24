@@ -1,6 +1,8 @@
 package Collision;
 
-abstract class Bahn{
+import javafx.scene.layout.Pane;
+
+abstract class Bahn extends Pane {
 
     private double minX;
     private double maxX;

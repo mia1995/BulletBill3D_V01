@@ -19,6 +19,12 @@
 #paneBL, #paneTL, #paneTR {
     -fx-background-color: #C1E3E9;
 
+}
 
+#collisionMode, #constantMode {
+    -fx-background-color: #151A28;
+}
+#collisionMode:hover, #constantMode:hover {
+    -fx-background-color: #54BFCA;
 }
 

@@ -213,13 +213,13 @@ public class GameScreenController implements Initializable {
         imagesLeft = Images.getLeftImage();
 
 
-        xySphere = new Sphere(750, 20,150, 15, Color.BLACK, 0, 20, 0, 1,0, 0, 0);
+        xySphere = new Sphere(750, 20,150, 15, Color.BLACK, 0, 40, 0, 1,0, 0, 0);
         paneTL.getChildren().add(xySphere);
 
-        xzSphere = new Sphere(750,20,150,15, Color.BLACK, 0,20,0,2,0,0,0);
+        xzSphere = new Sphere(750,20,150,15, Color.BLACK, 0,40,0,2,0,0,0);
         paneBL.getChildren().add(xzSphere);
 
-        yzSphere = new Sphere(750, 20, 150, 15, Color.BLACK, 0, 20, 0, 3,0,0,0);
+        yzSphere = new Sphere(750, 20, 150, 15, Color.BLACK, 0, 40, 0, 3,0,0,0);
         paneTR.getChildren().add(yzSphere);
 
 
@@ -458,15 +458,15 @@ public class GameScreenController implements Initializable {
         Time.curTime = System.currentTimeMillis();
 
         xySphere.updatePos(750, 20, 150);
-        xySphere.updateVelocity(0, 20,0);
+        xySphere.updateVelocity(0, 40,0);
         xySphere.updateAccel(0,0,0);
 
         xzSphere.updatePos(750, 20, 150);
-        xzSphere.updateVelocity(0, 20,0);
+        xzSphere.updateVelocity(0, 40,0);
         xzSphere.updateAccel(0,0,0);
 
         yzSphere.updatePos(750, 20, 150);
-        yzSphere.updateVelocity(0, 20,0);
+        yzSphere.updateVelocity(0, 40,0);
         yzSphere.updateAccel(0,0,0);
 
         seconds = 0;

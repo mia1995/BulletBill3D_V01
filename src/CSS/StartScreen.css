@@ -1,11 +1,11 @@
 #aPane {
     -fx-background-color:  #2E3449;
 }
-#startgame, #quitgame {
+#collisionMode, #quitgame, #constantMode {
     -fx-background-color: transparent;
     -fx-background-radius: 0;
 }
 
-#startgame:hover, #quitgame:hover {
+#collisionMode:hover, #quitgame:hover, #constantMode:hover{
     -fx-text-fill: #54BFCA;
 }

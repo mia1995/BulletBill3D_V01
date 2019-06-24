@@ -28,9 +28,13 @@ public class StartScreenController {
         stage.close();
     }
 
-    public void loadGame() {
+    public void loadConstantMode() {
         loadFXML("/fxml/Simulation.fxml");
 
+    }
+
+    public void loadCollisionMode() {
+        loadFXML("/fxml/Collision.fxml");
     }
 
     public void loadFXML(String fxml) {

@@ -300,31 +300,22 @@ public class Mover {
         int zNeg = currentElement.getZNeg();
         int zPos = currentElement.getZPos();
 
-        //System.out.println("xball: " +location.x + " > max: " + (maxWidth - radius) + "xball: " + location.x + " < min: " + (minWidth + radius));
-
         if (location.x > (maxWidth - radius)) {
 
             if (xPos == 1) {
-                //hier xPos vom Element gleich 2 setzen.
                 changeElement();
-                //setBorder();
             } else if (xPos == 0) {
                 velocity.x *= -1;
                 location.x = maxWidth - radius;
-                //System.out.println("x1-collision");
             } else if (xPos == 2) {
-                //hier xPos vom Element gleich 1 setzen.
-                //und changeElement 1 zurück. Vielleicht mit neuer Methode.
             }
 
         } else if (location.x < minWidth + radius) {
 
             if (xNeg == 1) {
                 changeElement();
-                //setBorder();
             } else if (xNeg == 0) {
                 velocity.x *= -1;
-                //System.out.println("x2-collision");
                 location.x = minWidth + radius;
             }
         }
@@ -333,22 +324,18 @@ public class Mover {
 
             if (yPos == 1) {
                 changeElement();
-                //setBorder();
             } else if (yPos == 0) {
                 velocity.y *= -0.2;
                 location.y = maxHeight - radius;
-                //System.out.println("y1-collision");
             }
 
         } else if (location.y < minHeight + radius) {
 
             if (yNeg == 1) {
                 changeElement();
-                //setBorder();
             } else if (yNeg == 0) {
                 velocity.y *= -1;
                 location.y = minHeight + radius;
-                //System.out.println("y2-collision");
             }
         }
 
@@ -356,7 +343,6 @@ public class Mover {
 
             if (zPos == 1) {
                 changeElement();
-                //setBorder();
             } else if (zPos == 0) {
                 velocity.z *= -1;
                 location.z = maxDepth - radius;
@@ -366,14 +352,10 @@ public class Mover {
 
             if (zNeg == 1) {
                 changeElement();
-                //setBorder();
             } else if (zNeg == 0) {
                 velocity.z *= -1;
                 location.z = minDepth + radius;
             }
-
-        } else {
-            //System.out.println("kein ChangeElement");
         }
 
     }

@@ -175,23 +175,17 @@ public class Mover {
 
     public void changeElement(){
 
-        //System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
-
         if (i < ablauf.length) {
 
-            if (j == ablauf[i].length - 1) { //evtl while schleife besser?
+            if (j == ablauf[i].length - 1) {
 
                 currentElement = (Bahn) ablauf[i][j];
-
-                //System.out.println("IndexI: " + i + " indexJ: " + j);
                 i++;
                 j = 0;
 
             } else {
                 currentElement = (Bahn) ablauf[i][j];
-                //System.out.println("IndexI: " + i + " indexJ: " + j);
                 j++;
-                //System.out.println("Bahn wurde durchlaufen");
             }
         }
 

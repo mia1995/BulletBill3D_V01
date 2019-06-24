@@ -4,7 +4,7 @@ import javafx.scene.shape.Line;
 
 public class Border {
     public javafx.scene.shape.Line[] createLines(){
-        Line[] lines = new Line[5];
+        Line[] lines = new Line[12];
         // i = 1; j = 2; Seitenansicht Y-Z
         lines[0] = new Line(130,170,150,165);
         lines[1] = new Line(150,165,170,120);
@@ -23,7 +23,12 @@ public class Border {
         // i = 7; j = 2; Topansicht X-Z
         lines[10] = new Line(270,215,250,250);
         lines[11] = new Line(250,250,230,270);
-
+        // i = 9; j = 2; Topansicht X-Z
+        lines[12] = new Line(70,230,50,250);
+        lines[13] = new Line(50,250,30,270);
+        // i = 10; j = 2; Topansicht X-Z
+        lines[14] = new Line(30,330,50,350);
+        lines[15] = new Line(50,350,70,370);
         return lines;
     }
 }

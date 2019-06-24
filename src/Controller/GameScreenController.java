@@ -3,6 +3,7 @@ package Controller;
 
 import Collision.Mover;
 import Collision.PVector;
+import Main.Images;
 import Physics.Movement;
 import Physics.Time;
 import Sprite.Sphere;
@@ -207,37 +208,10 @@ public class GameScreenController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
-        imagesFront = new Image[8];
-        imagesFront[0] = new Image("BB Front Hervorhebung/Mario01 C.png");
-        imagesFront[1] = new Image("BB Front Hervorhebung/Mario02 C.png");
-        imagesFront[2] = new Image("BB Front Hervorhebung/Mario03 C.png");
-        imagesFront[3] = new Image("BB Front Hervorhebung/Mario04 C.png");
-        imagesFront[4] = new Image("BB Front Hervorhebung/Mario05 C.png");
-        imagesFront[5] = new Image("BB Front Hervorhebung/Mario06 C.png");
-        imagesFront[6] = new Image("BB Front Hervorhebung/Mario07 C.png");
-        imagesFront[7] = new Image("BB Front Hervorhebung/Mario08 C.png");
+        imagesFront = Images.getFrontImages();
+        imagesTop = Images.getTopImage();
+        imagesLeft = Images.getLeftImage();
 
-        imagesTop = new Image[10];
-        imagesTop[0] = new Image("BB Top Hervorhebung/Mario01 C.png");
-        imagesTop[1] = new Image("BB Top Hervorhebung/Mario02 C.png");
-        imagesTop[2] = new Image("BB Top Hervorhebung/Mario03 C.png");
-        imagesTop[3] = new Image("BB Top Hervorhebung/Mario04 C.png");
-        imagesTop[4] = new Image("BB Top Hervorhebung/Mario05 C.png");
-        imagesTop[5] = new Image("BB Top Hervorhebung/Mario06 C.png");
-        imagesTop[6] = new Image("BB Top Hervorhebung/Mario07 C.png");
-        imagesTop[7] = new Image("BB Top Hervorhebung/Mario08 C.png");
-        imagesTop[8] = new Image("BB Top Hervorhebung/Mario09 C.png");
-        imagesTop[9] = new Image("BB Top Hervorhebung/Mario10 C.png");
-
-        imagesLeft = new Image[8];
-        imagesLeft[0] = new Image("BB Left Hervorhebung/Mario01 C.png");
-        imagesLeft[1] = new Image("BB Left Hervorhebung/Mario02 C.png");
-        imagesLeft[2] = new Image("BB Left Hervorhebung/Mario03 C.png");
-        imagesLeft[3] = new Image("BB Left Hervorhebung/Mario04 C.png");
-        imagesLeft[4] = new Image("BB Left Hervorhebung/Mario05 C.png");
-        imagesLeft[5] = new Image("BB Left Hervorhebung/Mario06 C.png");
-        imagesLeft[6] = new Image("BB Left Hervorhebung/Mario07 C.png");
-        imagesLeft[7] = new Image("BB Left Hervorhebung/Mario08 C.png");
 
         xySphere = new Sphere(750, 20,150, 15, Color.BLACK, 0, 20, 0, 1,0, 0, 0);
         paneTL.getChildren().add(xySphere);
@@ -292,14 +266,9 @@ public class GameScreenController implements Initializable {
                 // 02. Fall-Kurve
 
                 if (getSpherePosition(700, 800, 100, 200, 100, 200, xySphere)) {
-                    imageFront01.setImage(new Image("BulletBillParkour Front/Mario01.png"));
-                    imageSide01.setImage(new Image("BulletBillParkour Left/Mario01.png"));
-                    imageTop01.setImage(new Image("BulletBillParkour Top/Mario01.png"));
 
-                    imageFront02.setImage(imagesFront[1]);
-                    imageSide02.setImage(imagesLeft[1]);
+                    Images.fallCurve(imageFront01, imageSide01, imageTop01,imageFront02, imageSide02, isoPic, imagesFront[1], imagesLeft[1]);
 
-                    isoPic.setImage(new Image("BB Front Hervorhebung/Iso02.png"));
                 }
 
                 // 03. Kurve mit Steigung
@@ -338,14 +307,8 @@ public class GameScreenController implements Initializable {
                 //06. Zweite gerade Strecke
 
                 if (getSpherePosition(500, 600, 200, 300, 0, 100, xySphere)) {
-                    imageSide04.setImage(new Image("BulletBillParkour Left/Mario04.png"));
-                    imageFront03.setImage(new Image("BulletBillParkour Front/Mario04.png"));
-                    imageTop03.setImage(new Image("BulletBillParkour Top/Mario03ff.png"));
 
-                    imageFront04.setImage(imagesFront[2]);
-                    imageSide04.setImage(imagesLeft[3]);
-                    imageTop04.setImage(imagesTop[2]);
-
+                    Images.geradeStrecke(imageSide04, imageFront03, imageTop03, imageFront04, imageSide04, imageTop04, imagesFront[2],imagesLeft[3], imagesTop[2]);
                 }
 
                 //07. Großer freier Fall
@@ -392,14 +355,8 @@ public class GameScreenController implements Initializable {
                 //11. Loch in gerader Strecke, Fall mit Kurve
 
                 if (getSpherePosition(200, 300, 300, 400, 100, 200, xySphere)) {
-                    imageSide05.setImage(new Image("BulletBillParkour Left/Mario06.png"));
-                    imageTop07.setImage(new Image("BulletBillParkour Top/Mario041ff.png"));
 
-                    imageSide06.setImage(imagesLeft[5]);
-                    imageFront07.setImage(imagesFront[4]);
-                    imageTop08.setImage(imagesTop[4]);
-
-                    isoPic.setImage(new Image("BB Front Hervorhebung/Iso02.png"));
+                    Images.lochGeradeStrecke(imageSide05, imageTop07, imageSide06, imageFront07, imageTop08, isoPic, imagesLeft[5], imagesFront[4], imagesTop[4]);
                 }
 
                 //12. Kleiner Fall in eine Kurve
@@ -447,27 +404,15 @@ public class GameScreenController implements Initializable {
                 //16. Links Kurve nach links Kurve
 
                 if (getSpherePosition(0, 100, 400, 500, 300, 400, xySphere)) {
-                    imageTop11.setImage(new Image("BulletBillParkour Top/Mario041f.png"));
-                    imageSide07.setImage(new Image("BulletBillParkour Left/Mario09.png"));
 
-                    imageFront08.setImage(imagesFront[7]);
-                    imageTop12.setImage(imagesTop[8]);
-                    imageSide08.setImage(imagesLeft[7]);
-
-                    isoPic.setImage(new Image("BB Front Hervorhebung/Iso05.png"));
+                    Images.leftCurveAfterleftCurve(imageTop11, imageSide07, imageFront08, imageTop12, imageSide08, isoPic, imagesFront[7], imagesTop[8], imagesLeft[7] );
                 }
 
                 //17. gerades Ende
 
                 if (getSpherePosition(100, 200, 400, 500, 300, 400, xySphere)) {
-                    imageFront08.setImage(new Image("BulletBillParkour Front/Mario11.png"));
-                    imageTop12.setImage(new Image("BulletBillParkour Top/Mario08ff.png"));
-                    imageSide08.setImage(new Image("BulletBillParkour Left/Mario10.png"));
 
-                    imageFront09.setImage(imagesFront[6]);
-                    imageTop13.setImage(imagesTop[9]);
-
-                    isoPic.setImage(new Image("BB Front Hervorhebung/Iso04.png"));
+                    Images.geradeEnde(imageFront08, imageTop12, imageSide08, imageFront09, imageTop13, isoPic, imagesFront[6], imagesTop[9]);
                 }
 
                 if (getSpherePosition(200, 300, 400, 500, 300, 400, xySphere)) {

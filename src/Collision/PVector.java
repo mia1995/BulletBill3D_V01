@@ -38,7 +38,7 @@ public class PVector {
     }
     // Länge des Vektors (Magnitude)
     public double mag(){
-        return sqrt(x*x + y*y + z*z);
+        return sqrt(x*x + y*y + z*z) * 100;
     }
 
     public void normalize(){

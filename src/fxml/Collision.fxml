@@ -359,6 +359,11 @@
                            </image>
                         </ImageView>
                         <ImageView fitHeight="100.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label alignment="TOP_CENTER" contentDisplay="CENTER" prefHeight="100.0" prefWidth="100.0" text="Top (X - Z)">
+                           <font>
+                              <Font name="System Bold" size="15.0" />
+                           </font>
+                        </Label>
                      </children>
                   </GridPane>
                </children></Pane>

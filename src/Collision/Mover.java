@@ -1,10 +1,15 @@
 package Collision;
 
+import Controller.CollisionController;
+import Main.Images;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
@@ -15,13 +20,13 @@ import javafx.util.Duration;
 public class Mover {
 
     Timeline timeline;
-    public boolean change = false;
 
     public PVector location;
     public PVector velocity;
     public PVector acceleration;
+    public PVector veloOutput;
 
-    public PVector tmp;
+    public double velo;
 
     Object[][] ablauf;
 
@@ -58,7 +63,28 @@ public class Mover {
     double minHeight = freierFall[0].getMinY();
     double minDepth = freierFall[0].getMinZ();
 
+    boolean spherePosition01;
+    boolean spherePosition02;
+    boolean spherePosition03;
+    boolean spherePosition04;
+    boolean spherePosition05;
+    boolean spherePosition06;
+    boolean spherePosition07;
+    boolean spherePosition08;
+    boolean spherePosition09;
+    boolean spherePosition10;
+    boolean spherePosition11;
+    boolean spherePosition12;
+    boolean spherePosition13;
+    boolean spherePosition14;
+    boolean spherePosition15;
+    boolean spherePosition16;
+    boolean spherePosition17;
+    boolean spherePosition18;
+
+
     Bahn currentElement;
+
 /*
     public void setBorder(){
         maxWidth = currentElement.getMaxX();
@@ -76,9 +102,9 @@ public class Mover {
         //System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
     }*/
 
-    public void drawBahnElementsFrontView(Pane container){
-        for (int i = 0; i <= ablauf.length -1; i++){
-            for (int j = 0; j <= ablauf[i].length -1; j++){
+    public void drawBahnElementsFrontView(Pane container) {
+        for (int i = 0; i <= ablauf.length - 1; i++) {
+            for (int j = 0; j <= ablauf[i].length - 1; j++) {
                 Bahn drawElement = (Bahn) ablauf[i][j];
 
                 Rectangle rect = new Rectangle(drawElement.getMinX(), drawElement.getMinY(), drawElement.getMaxX() - drawElement.getMinX(), drawElement.getMaxY() - drawElement.getMinY());
@@ -89,9 +115,9 @@ public class Mover {
         }
     }
 
-    public void drawBahnElementsTopView(Pane container){
-        for (int i = 0; i <= ablauf.length -1; i++){
-            for (int j = 0; j <= ablauf[i].length -1; j++){
+    public void drawBahnElementsTopView(Pane container) {
+        for (int i = 0; i <= ablauf.length - 1; i++) {
+            for (int j = 0; j <= ablauf[i].length - 1; j++) {
                 Bahn drawElement = (Bahn) ablauf[i][j];
 
 
@@ -103,10 +129,12 @@ public class Mover {
         }
     }
 
-    public void drawBahnElementsSideView(Pane container){
-        for (int i = 0; i <= ablauf.length -1; i++){
-            for (int j = 0; j <= ablauf[i].length -1; j++){
+    public void drawBahnElementsSideView(Pane container) {
+        for (int i = 0; i <= ablauf.length - 1; i++) {
+            for (int j = 0; j <= ablauf[i].length - 1; j++) {
                 Bahn drawElement = (Bahn) ablauf[i][j];
+
+
                 Rectangle rect = new Rectangle(drawElement.getMinZ(), drawElement.getMinY(), drawElement.getMaxZ() - drawElement.getMinZ(), drawElement.getMaxY() - drawElement.getMinY());
                 rect.setFill(Color.TRANSPARENT);
                 rect.setStroke(Color.BLACK);
@@ -115,7 +143,7 @@ public class Mover {
         }
     }
 
-    public Object[] createAblauf(){
+    public Object[] createAblauf() {
 
         ablauf = new Object[12][];
         ablauf[0] = freierFall;
@@ -133,7 +161,7 @@ public class Mover {
         return ablauf;
     }
 
-    public void startwithElement(Pane frontView, Pane topView, Pane sideView){
+    public void startwithElement(Pane frontView, Pane topView, Pane sideView) {
 
         createAblauf();
         drawBahnElementsFrontView(frontView);
@@ -145,22 +173,23 @@ public class Mover {
         i++;
     }
 
-    public void changeElement(){
+    public void changeElement() {
 
         //System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
 
-        if(i < ablauf.length){
+        if (i < ablauf.length) {
 
-            if(j == ablauf[i].length - 1 ) { //evtl while schleife besser?
+            if (j == ablauf[i].length - 1) { //evtl while schleife besser?
 
                 currentElement = (Bahn) ablauf[i][j];
+
                 //System.out.println("IndexI: " + i + " indexJ: " + j);
                 i++;
                 j = 0;
                 //setBorder();
                 //checkEdges();
 
-            } else{
+            } else {
                 currentElement = (Bahn) ablauf[i][j];
                 //System.out.println("IndexI: " + i + " indexJ: " + j);
                 j++;
@@ -179,24 +208,24 @@ public class Mover {
 
     }
 
-    public Mover(){
+    public Mover() {
         //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
-        velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.01, -0.001);
+        velocity = new PVector(0, 0, 0);
+        acceleration = new PVector(-0.001, 0.01, -0.001);
         mass = 80.0;
+
     }
 
-    public void applyForce(PVector force){
+    public void applyForce(PVector force) {
         PVector f = force;
         f.div(mass);
         acceleration.add(f);
     }
 
-    public void draw(Pane frontView, Pane topView, Pane sideView){
+    public void draw(Pane frontView, Pane topView, Pane sideView, Label label) {
 
         startwithElement(frontView, topView, sideView);
-
 
 
         ballFrontView = new Sphere(radius);
@@ -230,6 +259,21 @@ public class Mover {
                 ballLeftView.setLayoutX(location.z);
                 ballLeftView.setLayoutY(location.y);
 
+                veloOutput = new PVector(velocity.x, velocity.y, velocity.z);
+                velo = (int) veloOutput.mag();
+
+                label.setText(String.valueOf(velo));
+
+                giveBool();
+
+
+
+
+
+
+
+
+
                 /*System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
                 System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");*/
@@ -238,7 +282,6 @@ public class Mover {
                 checkEdges();
             }
         }));
-
 
 
         frontView.getChildren().addAll(ballFrontView);
@@ -256,7 +299,7 @@ public class Mover {
         timeline.pause();
     }
 
-    public void repeatAnimation(Pane frontView, Pane topView, Pane sideView){
+    public void repeatAnimation(Pane frontView, Pane topView, Pane sideView) {
 
         i = 0;
         j = 0;
@@ -270,8 +313,8 @@ public class Mover {
         minDepth = currentElement.getMinZ();
 
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
-        velocity = new PVector(0,0, 0);
-        acceleration = new PVector(-0.001,0.01, -0.001);
+        velocity = new PVector(0, 0, 0);
+        acceleration = new PVector(-0.001, 0.01, -0.001);
         mass = 80.0;
 
         timeline.play();
@@ -279,7 +322,7 @@ public class Mover {
     }
 
 
-    public void checkEdges(){
+    public void checkEdges() {
 
         int xNeg = currentElement.getXNeg();
         int xPos = currentElement.getXPos();
@@ -290,56 +333,56 @@ public class Mover {
 
         //System.out.println("xball: " +location.x + " > max: " + (maxWidth - radius) + "xball: " + location.x + " < min: " + (minWidth + radius));
 
-        line1 = new Line(270,300,85,285,300,70);
+        line1 = new Line(270, 300, 85, 285, 300, 70);
 
-        if(ballFrontView.getBoundsInParent().intersects(line1.getBoundsInParent())){
+        if (ballFrontView.getBoundsInParent().intersects(line1.getBoundsInParent())) {
             velocity.x *= -1;
         }
 
-        if(location.x > (maxWidth - radius)){
+        if (location.x > (maxWidth - radius)) {
 
-            if(xPos == 1){
+            if (xPos == 1) {
                 //hier xPos vom Element gleich 2 setzen.
                 changeElement();
                 //setBorder();
-            }else if (xPos == 0){
+            } else if (xPos == 0) {
                 velocity.x *= -1;
                 location.x = maxWidth;
                 //System.out.println("x1-collision");
-            } else if (xPos == 2){
+            } else if (xPos == 2) {
                 //hier xPos vom Element gleich 1 setzen.
                 //und changeElement 1 zurück. Vielleicht mit neuer Methode.
             }
 
-        } else if(location.x < minWidth + radius){
+        } else if (location.x < minWidth + radius) {
 
-            if(xNeg == 1){
+            if (xNeg == 1) {
                 changeElement();
                 //setBorder();
-            }else if (xNeg == 0){
+            } else if (xNeg == 0) {
                 velocity.x *= -1;
                 //System.out.println("x2-collision");
                 location.x = minWidth + radius;
             }
         }
 
-        if(location.y > (maxHeight - radius)){
+        if (location.y > (maxHeight - radius)) {
 
-            if(yPos == 1){
+            if (yPos == 1) {
                 changeElement();
                 //setBorder();
-            }else if (yPos == 0){
+            } else if (yPos == 0) {
                 velocity.y *= -0.2;
                 location.y = maxHeight - radius;
                 //System.out.println("y1-collision");
             }
 
-        } else if(location.y < minHeight + radius){
+        } else if (location.y < minHeight + radius) {
 
-            if(yNeg == 1){
+            if (yNeg == 1) {
                 changeElement();
                 //setBorder();
-            }else if(yNeg == 0){
+            } else if (yNeg == 0) {
                 velocity.y *= -1;
                 location.y = minHeight + radius;
                 //System.out.println("y2-collision");
@@ -347,22 +390,22 @@ public class Mover {
         }
 
 
-        if(location.z > (maxDepth - radius)){
+        if (location.z > (maxDepth - radius)) {
 
-            if(zPos == 1){
+            if (zPos == 1) {
                 changeElement();
                 //setBorder();
-            }else if(zPos == 0){
+            } else if (zPos == 0) {
                 velocity.z *= -1;
                 location.z = maxDepth - radius;
             }
 
-        } else if(location.z < minDepth + radius){
+        } else if (location.z < minDepth + radius) {
 
-            if(zNeg == 1){
+            if (zNeg == 1) {
                 changeElement();
                 //setBorder();
-            }else if(zNeg == 0){
+            } else if (zNeg == 0) {
                 velocity.z *= -1;
                 location.z = minDepth + radius;
             }
@@ -373,5 +416,106 @@ public class Mover {
 
     }
 
+    public boolean getSpherePosition(double smallestX, double biggestX, double smallestY, double biggestY, double smallestZ, double biggestZ) {
+
+        if (location.x > smallestX && location.x < biggestX && location.y > smallestY && location.y < biggestY && location.z > smallestZ && location.z < biggestZ) {
+            return true;
+        }
+        return false;
+    }
+
+    public void giveBool() {
+        spherePosition01 = getSpherePosition(700, 800, 0, 100, 100, 200);
+        spherePosition02 = getSpherePosition(700, 800, 100, 200, 100, 200);
+        spherePosition03 = getSpherePosition(700, 800, 100, 200, 0, 100);
+        spherePosition04 = getSpherePosition(600, 700, 100, 200, 0, 100);
+        spherePosition05 = getSpherePosition(600, 700, 200, 300, 0, 100);
+        spherePosition06 = getSpherePosition(500, 600, 200, 300, 0, 100);
+        spherePosition07 = getSpherePosition(400, 500, 200, 300, 0, 100);
+        spherePosition08 = getSpherePosition(400, 500, 300, 400, 0, 100);
+        spherePosition09 = getSpherePosition(300, 400, 300, 400, 0, 100);
+        spherePosition10 = getSpherePosition(200, 300, 300, 400, 0, 100);
+        spherePosition11 = getSpherePosition(200, 300, 300, 400, 100, 200);
+        spherePosition12 = getSpherePosition(200, 300, 300, 400, 200, 300);
+        spherePosition13 = getSpherePosition(200, 300, 400, 500, 200, 300);
+        spherePosition14 = getSpherePosition(100, 200, 400, 500, 200, 300);
+        spherePosition15 = getSpherePosition(0, 100, 400, 500, 200, 300);
+        spherePosition16 = getSpherePosition(0, 100, 400, 500, 300, 400);
+        spherePosition17 = getSpherePosition(100, 200, 400, 500, 300, 400);
+        spherePosition18 = getSpherePosition(200, 300, 400, 500, 300, 400);
+    }
+
+    public boolean isSpherePosition01() {
+        return spherePosition01;
+    }
+
+
+    public boolean isSpherePosition02() {
+        return spherePosition02;
+    }
+
+    public boolean isSpherePosition03() {
+        return spherePosition03;
+    }
+
+    public boolean isSpherePosition04() {
+        return spherePosition04;
+    }
+
+    public boolean isSpherePosition05() {
+        return spherePosition05;
+    }
+
+    public boolean isSpherePosition06() {
+        return spherePosition06;
+    }
+
+    public boolean isSpherePosition07() {
+        return spherePosition07;
+    }
+
+    public boolean isSpherePosition08() {
+        return spherePosition08;
+    }
+
+    public boolean isSpherePosition09() {
+        return spherePosition09;
+    }
+
+    public boolean isSpherePosition10() {
+        return spherePosition10;
+    }
+
+    public boolean isSpherePosition11() {
+        return spherePosition11;
+    }
+
+    public boolean isSpherePosition12() {
+        return spherePosition12;
+    }
+
+    public boolean isSpherePosition13() {
+        return spherePosition13;
+    }
+
+    public boolean isSpherePosition14() {
+        return spherePosition14;
+    }
+
+    public boolean isSpherePosition15() {
+        return spherePosition15;
+    }
+
+    public boolean isSpherePosition16() {
+        return spherePosition16;
+    }
+
+    public boolean isSpherePosition17() {
+        return spherePosition17;
+    }
+
+    public boolean isSpherePosition18() {
+        return spherePosition18;
+    }
 
 }

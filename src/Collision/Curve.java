@@ -8,7 +8,7 @@ public class Curve extends Bahn {
     public static Curve[] createElement1(){
         Curve[] curves = new Curve[3];
         curves[0] = new Curve(730, 770, 100, 115 ,130, 170 ,0,0,2,1,0,0);
-        curves[1] = new Curve(730 ,770, 115, 1710, 115, 170, 0,0,2,0,1,0);
+        curves[1] = new Curve(730 ,770, 115, 170, 115, 170, 0,0,2,0,1,0);
         curves[2] = new Curve(730, 770, 130, 170, 100, 115, 0,0,0,0,1,2);
         return curves;
     }
@@ -17,7 +17,7 @@ public class Curve extends Bahn {
         Curve[] curveKomplex = new Curve[4];
         curveKomplex[0] = new Curve(715,770,130,170,70,100,0,0,0,0, 1,2);
         curveKomplex[1] = new Curve(715,770,130,170,30,70, 0,0,0,1,0,2);
-        curveKomplex[2] = new Curve(715,770,170,195,30,80, 1,0,2,0,0,0);
+        curveKomplex[2] = new Curve(715,770,170,195,30,70, 1,0,2,0,0,0);
         curveKomplex[3] = new Curve(700,715,155,195,30,70, 1,2,0,0,0,0);
         return curveKomplex;
     }

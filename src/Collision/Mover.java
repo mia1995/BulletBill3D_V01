@@ -254,17 +254,11 @@ public class Mover {
         timeline.pause();
     }
 
-    public void repeatAnimation(){
+    public void repeatAnimation(Pane frontView, Pane topView, Pane sideView){
 
-
-        ballFrontView.setLayoutX(755);
-        ballFrontView.setLayoutY(35);
-
-        ballTopView.setLayoutX(755);
-        ballTopView.setLayoutY(170);
-
-        ballLeftView.setLayoutX(170);
-        ballLeftView.setLayoutY(35);
+        i = 0;
+        j = 0;
+        startwithElement(frontView, topView, sideView);
 
 
 

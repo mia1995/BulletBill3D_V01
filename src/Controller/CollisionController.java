@@ -110,7 +110,8 @@ public class CollisionController implements Initializable {
     }
 
     public void repeatGame() {
-        mover.repeatAnimation();
+        mover.repeatAnimation(paneTL, paneBL, paneTR);
+
         seconds = 0;
         timeLabel.setText(String.valueOf(0));
     }

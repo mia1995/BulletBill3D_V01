@@ -13,6 +13,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Sphere;
 import javafx.util.Duration;
@@ -51,7 +52,6 @@ public class Mover {
     Sphere ballTopView;
     Sphere ballLeftView;
 
-    Line line1 = new Line(760,185,30,770,120,70);
     javafx.scene.shape.Line line;
 
     double radius = 15;
@@ -93,6 +93,7 @@ public class Mover {
         acceleration = new PVector(-0.001,0.01, -0.001);
         mass = 80.0;
     }
+
 
     public void drawBahnElementsFrontView(Pane container) {
         for (int i = 0; i <= ablauf.length - 1; i++) {
@@ -309,12 +310,6 @@ public class Mover {
 
         //System.out.println("xball: " +location.x + " > max: " + (maxWidth - radius) + "xball: " + location.x + " < min: " + (minWidth + radius));
 
-        //line1 = new Line(270,300,85,285,300,70);
-
-        if (ballFrontView.getBoundsInParent().intersects(line1.getBoundsInParent())) {
-            velocity.x *= -1;
-        }
-
         if (location.x > (maxWidth - radius)) {
 
             if (xPos == 1) {
@@ -443,7 +438,6 @@ public class Mover {
     public boolean isSpherePosition01() {
         return spherePosition01;
     }
-
 
     public boolean isSpherePosition02() {
         return spherePosition02;

@@ -51,7 +51,8 @@ public class Mover {
     Sphere ballTopView;
     Sphere ballLeftView;
 
-    Line line1;
+    Line line1 = new Line(760,185,30,770,120,70);
+    javafx.scene.shape.Line line;
 
     double radius = 15;
     public double mass;
@@ -93,14 +94,14 @@ public class Mover {
         minWidth = currentElement.getMinX();
         minHeight = currentElement.getMinY();
         minDepth = currentElement.getMinZ();
-
-        Rectangle rect = new Rectangle(minWidth, minHeight, maxWidth - minWidth, maxHeight - minHeight);
-        rect.setFill(Color.TRANSPARENT);
-        rect.setStroke(Color.BLACK);
-        container.getChildren().add(rect);
-
-        //System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
-    }*/
+*/
+    public Mover(){
+        //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
+        location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
+        velocity = new PVector(0,0, 0);
+        acceleration = new PVector(-0.001,0.01, -0.001);
+        mass = 80.0;
+    }
 
     public void drawBahnElementsFrontView(Pane container) {
         for (int i = 0; i <= ablauf.length - 1; i++) {
@@ -110,6 +111,8 @@ public class Mover {
                 Rectangle rect = new Rectangle(drawElement.getMinX(), drawElement.getMinY(), drawElement.getMaxX() - drawElement.getMinX(), drawElement.getMaxY() - drawElement.getMinY());
                 rect.setFill(Color.TRANSPARENT);
                 rect.setStroke(Color.BLACK);
+
+
                 container.getChildren().add(rect);
             }
         }
@@ -171,9 +174,26 @@ public class Mover {
         //System.out.println("IndexI: " + i + " indexJ: " + j);
         currentElement = (Bahn) ablauf[i][j];
         i++;
+
+        line = new javafx.scene.shape.Line(270,85,285,85);
+
+        line.setStroke(Color.BLUE);
+        line.setStrokeWidth(1);
+        line.toFront();
+        topView.getChildren().add(line);
+
+
     }
+/*
+    public void checkLines(){
+        if (ballTopView.intersects(line.getBoundsInLocal())){
+            radius = 40;
 
     public void changeElement() {
+        }
+    }
+*/
+    public void changeElement(){
 
         //System.out.println("Bounds: Bahn = (" + maxWidth + "; " + maxHeight + "; " + maxDepth + ")");
 
@@ -186,15 +206,11 @@ public class Mover {
                 //System.out.println("IndexI: " + i + " indexJ: " + j);
                 i++;
                 j = 0;
-                //setBorder();
-                //checkEdges();
 
             } else {
                 currentElement = (Bahn) ablauf[i][j];
                 //System.out.println("IndexI: " + i + " indexJ: " + j);
                 j++;
-                //setBorder();
-                //checkEdges();
                 //System.out.println("Bahn wurde durchlaufen");
             }
         }
@@ -208,14 +224,6 @@ public class Mover {
 
     }
 
-    public Mover() {
-        //location = new PVector(maxWidth - radius, maxHeight, maxDepth);
-        location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
-        velocity = new PVector(0, 0, 0);
-        acceleration = new PVector(-0.001, 0.01, -0.001);
-        mass = 80.0;
-
-    }
 
     public void applyForce(PVector force) {
         PVector f = force;
@@ -226,8 +234,6 @@ public class Mover {
     public void draw(Pane frontView, Pane topView, Pane sideView, Label label) {
 
         startwithElement(frontView, topView, sideView);
-
-
         ballFrontView = new Sphere(radius);
         ballFrontView.relocate(location.x, location.y);
         PhongMaterial material = new PhongMaterial();
@@ -265,24 +271,14 @@ public class Mover {
                 label.setText(String.valueOf(velo));
 
                 giveBool();
-
-
-
-
-
-
-
-
-
                 /*System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
                 System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");*/
                 //System.out.println(currentElement);
-
+                lineCollision();
                 checkEdges();
             }
         }));
-
 
         frontView.getChildren().addAll(ballFrontView);
         topView.getChildren().addAll(ballTopView);
@@ -292,7 +288,6 @@ public class Mover {
 
     public void playAnimation() {
         timeline.play();
-
     }
 
     public void stopAnimation() {
@@ -333,7 +328,7 @@ public class Mover {
 
         //System.out.println("xball: " +location.x + " > max: " + (maxWidth - radius) + "xball: " + location.x + " < min: " + (minWidth + radius));
 
-        line1 = new Line(270, 300, 85, 285, 300, 70);
+        //line1 = new Line(270,300,85,285,300,70);
 
         if (ballFrontView.getBoundsInParent().intersects(line1.getBoundsInParent())) {
             velocity.x *= -1;
@@ -389,8 +384,7 @@ public class Mover {
             }
         }
 
-
-        if (location.z > (maxDepth - radius)) {
+        if(location.z > (maxDepth - radius)){
 
             if (zPos == 1) {
                 changeElement();
@@ -414,6 +408,25 @@ public class Mover {
             //System.out.println("kein ChangeElement");
         }
 
+    }
+    public void lineCollision(){
+        double distX = line.getStartX() - line.getEndX();
+        double distZ = line.getStartY() - line.getEndY();
+        double len = Math.sqrt((distX*distX) + (distZ*distZ));
+
+        double dot = ( ((location.x - line.getStartX())*(line.getEndX()-line.getStartX()) + ( (location.z-line.getStartY())*(line.getEndY()-line.getStartY())))) / Math.pow(len,2);
+
+        double closestX = line.getStartX() + (dot * (line.getEndX() - line.getStartX()));
+        double closestZ = line.getStartY() + (dot * (line.getEndY() - line.getStartY()));
+
+        distX = closestX - location.x;
+        distZ = closestZ - location.z;
+        double distance = Math.sqrt((distX*distX) + (distZ*distZ));
+
+        if (distance <= radius){
+            velocity.x *= -1;
+            velocity.z *= -1;
+        }
     }
 
     public boolean getSpherePosition(double smallestX, double biggestX, double smallestY, double biggestY, double smallestZ, double biggestZ) {

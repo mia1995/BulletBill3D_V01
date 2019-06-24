@@ -16,4 +16,13 @@ public class Line extends javafx.scene.shape.Line {
         this.endY = endY_;
         this.endZ = endZ_;
     }
+
+    public double getStartZ() {
+        return startZ;
+    }
+
+    public double getEndZ() {
+        return endZ;
+    }
+
 }

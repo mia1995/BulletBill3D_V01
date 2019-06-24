@@ -76,6 +76,7 @@ public class CollisionController implements Initializable {
     Timeline timecounter;
     public int seconds = 0;
     private boolean stopMaker = false;
+    private boolean change = false;
 
     Mover mover;
     private double reibunskoeffizent = 2;
@@ -96,11 +97,11 @@ public class CollisionController implements Initializable {
     }
 
     public void playGame() {
-
         if (stopMaker == false) {
 
-            if(Mover.change == false) {
+            if (change == false) {
                 mover.draw(paneTL, paneBL, paneTR);
+                change = true;
             }
             mover.playAnimation();
             stopMaker = true;
@@ -118,6 +119,7 @@ public class CollisionController implements Initializable {
         if (stopMaker == true) {
             mover.stopAnimation();
             stopMaker = false;
+
             timecounter.stop();
 
         }
@@ -180,21 +182,17 @@ public class CollisionController implements Initializable {
 
     private void doTime() {
 
+            timecounter = new Timeline();
+            timecounter.setCycleCount(Timeline.INDEFINITE);
+            KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent actionEvent) {
+                    seconds++;
+                    timeLabel.setText(String.valueOf(seconds));
 
-        timecounter = new Timeline();
-        timecounter.setCycleCount(Timeline.INDEFINITE);
-
-
-        KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent actionEvent) {
-                seconds++;
-                timeLabel.setText(String.valueOf(seconds));
-
-            }
-        });
-
-        timecounter.getKeyFrames().add(frame);
-        timecounter.play();
-    }
+                }
+            });
+            timecounter.getKeyFrames().add(frame);
+            timecounter.play();
+        }
 }

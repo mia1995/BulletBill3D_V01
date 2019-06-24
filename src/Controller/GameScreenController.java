@@ -496,8 +496,6 @@ public class GameScreenController implements Initializable {
             loop.play();
             stopMaker = true;
             doTime();
-
-
         }
 
     }
@@ -578,6 +576,7 @@ public class GameScreenController implements Initializable {
     }
 
     public void loadFXML(String fxml) {
+        loop.pause();
         AnchorPane pane = null;
         try {
             pane = FXMLLoader.load(getClass().getResource(fxml));
@@ -589,7 +588,6 @@ public class GameScreenController implements Initializable {
 
     private void doTime() {
 
-        int eins = 1;
         timecounter = new Timeline();
         timecounter.setCycleCount(Timeline.INDEFINITE);
         KeyFrame frame = new KeyFrame(Duration.seconds(1), new EventHandler<ActionEvent>() {
@@ -600,7 +598,6 @@ public class GameScreenController implements Initializable {
 
             }
         });
-
         timecounter.getKeyFrames().add(frame);
         timecounter.play();
     }

@@ -15,11 +15,13 @@ import javafx.util.Duration;
 public class Mover {
 
     Timeline timeline;
-    public static boolean change = false;
+    public boolean change = false;
 
     public PVector location;
     public PVector velocity;
     public PVector acceleration;
+
+    public PVector tmp;
 
     Object[][] ablauf;
 
@@ -39,8 +41,6 @@ public class Mover {
     Curve[] curveRight = Curve.createElement6();
     Gerade[] geradeRight = Gerade.createElement5();
 
-    public static Pane container = new Pane();
-    public static Scene scene = new Scene(container, 1000,800);
 
     Sphere ballFrontView;
     Sphere ballTopView;
@@ -208,14 +208,25 @@ public class Mover {
         ballLeftView = new Sphere(radius);
         ballLeftView.relocate(location.z, location.y);
 
-        Timeline timeline = new Timeline();
+        timeline = new Timeline();
         timeline.setCycleCount(Timeline.INDEFINITE);
         timeline.setAutoReverse(false);
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(20), new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent t) {
-                setBall();
+                velocity.add(acceleration);
+                location.add(velocity);
+                acceleration.mult(1);
+
+                ballFrontView.setLayoutX(location.x);
+                ballFrontView.setLayoutY(location.y);
+
+                ballTopView.setLayoutX(location.x);
+                ballTopView.setLayoutY(location.z);
+
+                ballLeftView.setLayoutX(location.z);
+                ballLeftView.setLayoutY(location.y);
 
                 /*System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
                 System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
@@ -225,40 +236,40 @@ public class Mover {
                 checkEdges();
             }
         }));
-        timeline.play();
+
+
 
         frontView.getChildren().addAll(ballFrontView);
         topView.getChildren().addAll(ballTopView);
         sideView.getChildren().addAll(ballLeftView);
+
     }
 
     public void playAnimation() {
         timeline.play();
-        change = true;
+
     }
 
     public void stopAnimation() {
-        timeline.stop();
+        timeline.pause();
     }
 
     public void repeatAnimation(){
-        setBall();
+
+
+        ballFrontView.setLayoutX(755);
+        ballFrontView.setLayoutY(35);
+
+        ballTopView.setLayoutX(755);
+        ballTopView.setLayoutY(170);
+
+        ballLeftView.setLayoutX(170);
+        ballLeftView.setLayoutY(35);
+
+
+
     }
 
-    public void setBall(){
-        velocity.add(acceleration);
-        location.add(velocity);
-        acceleration.mult(1);
-
-        ballFrontView.setLayoutX(location.x);
-        ballFrontView.setLayoutY(location.y);
-
-        ballTopView.setLayoutX(location.x);
-        ballTopView.setLayoutY(location.z);
-
-        ballLeftView.setLayoutX(location.z);
-        ballLeftView.setLayoutY(location.y);
-    }
 
     public void checkEdges(){
 

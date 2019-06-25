@@ -92,16 +92,14 @@ public class Mover {
     boolean spherePosition17;
     boolean spherePosition18;
 
-
     Bahn currentElement;
 
     public Mover(){
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(0,0.01, 0);
+        acceleration = new PVector(0,0.01, -0.0001);
         mass = 20.0;
     }
-
 
     public void drawBahnElementsFrontView(Pane container) {
         for (int i = 0; i <= ablauf.length - 1; i++) {
@@ -111,7 +109,6 @@ public class Mover {
                 Rectangle rect = new Rectangle(drawElement.getMinX(), drawElement.getMinY(), drawElement.getMaxX() - drawElement.getMinX(), drawElement.getMaxY() - drawElement.getMinY());
                 rect.setFill(Color.TRANSPARENT);
                 rect.setStroke(Color.BLACK);
-
 
                 container.getChildren().add(rect);
             }
@@ -315,7 +312,7 @@ public class Mover {
         int zNeg = currentElement.getZNeg();
         int zPos = currentElement.getZPos();
 
-        if (k < lines.length) {
+        if (k < lines.length-1) {
 
             //System.out.println(k);
 

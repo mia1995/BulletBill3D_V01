@@ -198,13 +198,6 @@ public class GameScreenController implements Initializable {
     // Zeit Zähler
      private int seconds = 0;
 
-
-
-
-
-
-
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 

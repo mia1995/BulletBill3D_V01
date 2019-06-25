@@ -1,15 +1,10 @@
 package Collision;
 
-import Controller.CollisionController;
-import Main.Images;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Scene;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.PhongMaterial;
@@ -60,9 +55,6 @@ public class Mover {
     Sphere ballTopView;
     Sphere ballLeftView;
 
-    //Line line1 = new Line(760,185,30,770,120,70);
-    //javafx.scene.shape.Line line;
-
     double radius = 15;
     public double mass;
 
@@ -97,7 +89,7 @@ public class Mover {
     public Mover(){
         location = new PVector(maxWidth - radius, minHeight + radius, maxDepth);
         velocity = new PVector(0,0, 0);
-        acceleration = new PVector(0,0.01, -0.0001);
+        acceleration = new PVector(-0.001,0.01, -0.001);
         mass = 20.0;
     }
 
@@ -119,8 +111,6 @@ public class Mover {
         for (int i = 0; i <= ablauf.length - 1; i++) {
             for (int j = 0; j <= ablauf[i].length - 1; j++) {
                 Bahn drawElement = (Bahn) ablauf[i][j];
-
-
                 Rectangle rect = new Rectangle(drawElement.getMinX(), drawElement.getMinZ(), drawElement.getMaxX() - drawElement.getMinX(), drawElement.getMaxZ() - drawElement.getMinZ());
                 rect.setFill(Color.TRANSPARENT);
                 rect.setStroke(Color.BLACK);
@@ -133,8 +123,6 @@ public class Mover {
         for (int i = 0; i <= ablauf.length - 1; i++) {
             for (int j = 0; j <= ablauf[i].length - 1; j++) {
                 Bahn drawElement = (Bahn) ablauf[i][j];
-
-
                 Rectangle rect = new Rectangle(drawElement.getMinZ(), drawElement.getMinY(), drawElement.getMaxZ() - drawElement.getMinZ(), drawElement.getMaxY() - drawElement.getMinY());
                 rect.setFill(Color.TRANSPARENT);
                 rect.setStroke(Color.BLACK);
@@ -143,8 +131,7 @@ public class Mover {
         }
     }
 
-    public Object[] createAblauf() {
-
+     public Object[] createAblauf() {
         ablauf = new Object[12][];
         ablauf[0] = freierFall;
         ablauf[1] = curves;
@@ -161,25 +148,15 @@ public class Mover {
         return ablauf;
     }
 
-    //test
-
     public void startwithElement(Pane frontView, Pane topView, Pane sideView) {
 
         createAblauf();
-        drawBahnElementsFrontView(frontView);
-        drawBahnElementsTopView(topView);
-        drawBahnElementsSideView(sideView);
+        //drawBahnElementsFrontView(frontView);
+        //drawBahnElementsTopView(topView);
+        //drawBahnElementsSideView(sideView);
         //System.out.println(ablauf[0][0]);
-        //System.out.println("IndexI: " + i + " indexJ: " + j);
         currentElement = (Bahn) ablauf[i][j];
         i++;
-
-        /*line = new javafx.scene.shape.Line(270,85,285,85);
-
-        line.setStroke(Color.BLUE);
-        line.setStrokeWidth(1);
-        line.toFront();
-        topView.getChildren().add(line);*/
     }
 
     public void changeElement(){
@@ -215,9 +192,6 @@ public class Mover {
     }
 
     public void draw(Pane frontView, Pane topView, Pane sideView, Label label) {
-
-        //System.out.println(linePosition[0][1]);
-        //System.out.println(linePosition[2][0]);
 
         startwithElement(frontView, topView, sideView);
         ballFrontView = new Sphere(radius);
@@ -257,11 +231,6 @@ public class Mover {
                 label.setText(String.valueOf(velo));
 
                 giveBool();
-                /*System.out.println("Location: (" + location.x + "; " + location.y  + "; " + location.z + ")");
-                System.out.println("Velocity: (" + velocity.x + "; " + velocity.y + "; " + velocity.z + ")");
-                System.out.println("Acceleration: (" + acceleration.x + "; " + acceleration.y + "; " + acceleration.y + ")");*/
-                //System.out.println(currentElement);
-                //lineCollision();
                 checkEdges();
             }
         }));
@@ -299,7 +268,6 @@ public class Mover {
         mass = 80.0;
 
         timeline.play();
-
     }
 
 
@@ -314,12 +282,9 @@ public class Mover {
 
         if (k < lines.length-1) {
 
-            //System.out.println(k);
-
             if (i == linePosition[k][0] && j == linePosition[k][1]) {
 
                 line1 = lines[k];
-                //line1 = new Line(760,185,30,770,120,70);
 
                 lineCollision();
 
@@ -328,14 +293,6 @@ public class Mover {
                 k++;
             }
         }
-
-        //System.out.println("xball: " +location.x + " > max: " + (maxWidth - radius) + "xball: " + location.x + " < min: " + (minWidth + radius));
-
-        //line1 = new Line(270,300,85,285,300,70);
-
-        /*if (ballFrontView.getBoundsInParent().intersects(line1.getBoundsInParent())) {
-            velocity.x *= -1;
-        }*/
 
         if (location.x > (maxWidth - radius)) {
 
@@ -394,15 +351,9 @@ public class Mover {
                 location.z = minDepth + radius;
             }
         }
-
     }
 
     public void lineCollision(){
-
-        System.out.println(line1.getStartX());
-        System.out.println(line1.getStartY());
-        System.out.println(line1.getEndX());
-        System.out.println(line1.getEndY());
 
         double distX = line1.getStartX() - line1.getEndX();
         double distZ = line1.getStartY() - line1.getEndY();
@@ -420,8 +371,6 @@ public class Mover {
         if (distance <= radius){
             velocity.x *= -1;
             velocity.z *= -1;
-
-            System.out.println("ja");
         }
     }
 
@@ -457,7 +406,6 @@ public class Mover {
     public boolean isSpherePosition01() {
         return spherePosition01;
     }
-
 
     public boolean isSpherePosition02() {
         return spherePosition02;

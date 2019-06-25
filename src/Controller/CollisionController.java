@@ -54,19 +54,10 @@ public class CollisionController implements Initializable {
     private Pane paneBL;
 
     @FXML
-    private Button playbtn;
-
-    @FXML
     private ImageView playbtnImage;
 
     @FXML
-    private Button breakbtn;
-
-    @FXML
     private ImageView pausebtnImage;
-
-    @FXML
-    private Button repeatbtn;
 
     @FXML
     private ImageView repeatbtnImage;
@@ -180,7 +171,7 @@ public class CollisionController implements Initializable {
     private boolean change = false;
 
     Mover mover;
-    private double reibunskoeffizent = 2;
+    private double reibunskoeffizent = 1;
 
     Image[] imagesFront;
     Image[] imagesTop;
@@ -191,7 +182,7 @@ public class CollisionController implements Initializable {
 
         mover = new Mover();
 
-        PVector gravity = new PVector(0, 0.981 * mover.mass, 0);
+        PVector gravity = new PVector(0, 0.0981 * mover.mass, 0);
         PVector friction = mover.velocity;
         friction.mult(-1);
         friction.normalize();
@@ -377,13 +368,10 @@ public class CollisionController implements Initializable {
                     imageFront09.setImage(new Image("BulletBillParkour Front/Mario10.png"));
                     imageTop13.setImage(new Image("BulletBillParkour Top/Mario03fff.png"));
 
-
                     timecounter.stop();
                 }
             }
         }));
-
-
     }
 
     public void playGame() {
@@ -413,9 +401,7 @@ public class CollisionController implements Initializable {
             stopMaker = false;
             timeline.pause();
             timecounter.stop();
-
         }
-
     }
 
     public void quitGame() {
@@ -458,7 +444,6 @@ public class CollisionController implements Initializable {
 
     public void loadCollision() {
         loadFXML("/fxml/Simulation.fxml");
-
     }
 
     public void loadFXML(String fxml) {
@@ -469,7 +454,6 @@ public class CollisionController implements Initializable {
             e.printStackTrace();
         }
         aPane.getChildren().add(pane);
-
     }
 
     private void doTime() {
@@ -488,5 +472,4 @@ public class CollisionController implements Initializable {
             timecounter.getKeyFrames().add(frame);
             timecounter.play();
     }
-
 }

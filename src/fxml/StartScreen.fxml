@@ -35,17 +35,17 @@
                   <Image url="@../Icons/bulletBill.gif" />
                </image>
             </ImageView>
-            <Button id="collisionMode" fx:id="collisionMode" alignment="CENTER" contentDisplay="CENTER" layoutX="371.0" layoutY="431.0" mnemonicParsing="false" onAction="#loadCollisionMode" prefHeight="90.0" prefWidth="362.0" stylesheets="@../CSS/StartScreen.css" text="Kollisionsmodus" textFill="WHITE" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="371.0" AnchorPane.rightAnchor="777.0" AnchorPane.topAnchor="431.0">
+            <Button id="collisionMode" fx:id="collisionMode" alignment="CENTER" contentDisplay="CENTER" layoutX="592.0" layoutY="430.0" mnemonicParsing="false" onAction="#loadCollisionMode" prefHeight="25.0" prefWidth="500.0" stylesheets="@../CSS/StartScreen.css" text="Simulation" textFill="WHITE" AnchorPane.leftAnchor="500.0">
                <font>
                   <Font size="42.0" />
                </font>
             </Button>
-            <Button id="quitgame" fx:id="quitbtn" alignment="CENTER" contentDisplay="CENTER" layoutX="637.0" layoutY="548.0" mnemonicParsing="false" onAction="#quitGame" stylesheets="@../CSS/StartScreen.css" text="Beenden" textFill="WHITE">
+            <Button id="quitgame" fx:id="quitbtn" alignment="CENTER" contentDisplay="CENTER" layoutX="646.0" layoutY="613.0" mnemonicParsing="false" onAction="#quitGame" prefHeight="25.0" prefWidth="500.0" stylesheets="@../CSS/StartScreen.css" text="Beenden" textFill="WHITE" AnchorPane.leftAnchor="500.0">
                <font>
                   <Font size="42.0" />
                </font>
             </Button>
-            <Button id="constantMode" fx:id="constantMode" alignment="CENTER" contentDisplay="CENTER" layoutX="760.0" layoutY="431.0" mnemonicParsing="false" onAction="#loadConstantMode" prefHeight="90.0" prefWidth="404.0" stylesheets="@../CSS/StartScreen.css" text="konstanter Modus" textFill="WHITE" AnchorPane.bottomAnchor="389.0" AnchorPane.leftAnchor="760.0" AnchorPane.rightAnchor="346.0" AnchorPane.topAnchor="431.0">
+            <Button id="constantMode" fx:id="constantMode" alignment="CENTER" contentDisplay="CENTER" layoutX="543.0" layoutY="520.0" mnemonicParsing="false" onAction="#loadConstantMode" prefHeight="25.0" prefWidth="500.0" stylesheets="@../CSS/StartScreen.css" text="einfache Animation" textFill="WHITE" AnchorPane.leftAnchor="500.0">
                <font>
                   <Font size="42.0" />
                </font>

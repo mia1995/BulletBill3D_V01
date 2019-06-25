@@ -398,7 +398,7 @@
                         </ImageView>
                      </graphic>
                   </Button>
-                  <Button id="constantMode" fx:id="collisionMode" layoutX="125.0" layoutY="338.0" mnemonicParsing="false" onAction="#loadCollision" prefHeight="25.0" prefWidth="150.0" stylesheets="@../CSS/GameScreen.css" text="Kollisionsmodus" textFill="WHITE" />
+                  <Button id="constantMode" fx:id="collisionMode" layoutX="125.0" layoutY="338.0" mnemonicParsing="false" onAction="#loadCollision" prefHeight="25.0" prefWidth="150.0" stylesheets="@../CSS/GameScreen.css" text="Simulation" textFill="WHITE" />
                </children>
             </Pane>
             <Pane layoutY="500.0" prefHeight="10.0" prefWidth="1210.0" style="-fx-background-color: #000000;" />
